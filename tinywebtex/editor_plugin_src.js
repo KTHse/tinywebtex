@@ -35,7 +35,7 @@
 			ed.addButton('tinywebtex', {
 				title : 'tinywebtex.desc',
 				cmd : 'mceTinyWebtex',
-				image : url + '/img/tinywebtex.png'
+				image : url + '/img/button.png'
 			});
 
 			// Add a node change handler, selects the button in the UI when a image is selected
