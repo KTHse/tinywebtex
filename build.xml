@@ -1,0 +1,45 @@
+<project name="tinywebtex" default="build">
+  <property name="project.version" value="0.0.0"/>
+  
+  <tstamp>
+    <format property="project.builddate" pattern="yyyy-MM-dd"/>
+  </tstamp>
+
+  <target name="minify">
+    <apply executable="java" parallel="false" dest=".">
+      <fileset dir="." includes="**/*.js" />
+      <arg line="-jar"/>
+      <arg path="lib/yuicompressor-2.4.7.jar" />
+      <arg line="-v"/>
+      <srcfile/>
+      <arg line="-o"/> 
+      <mapper type="glob" from="*_src.js" to="*.js"/>
+      <targetfile/>
+    </apply>
+
+    <apply executable="java" parallel="false" dest=".">
+      <fileset dir="." includes="**/*.css" />
+      <arg line="-jar"/>
+      <arg path="lib/yuicompressor-2.4.7.jar" />
+      <arg line="-v"/>
+      <srcfile/>
+      <arg line="-o"/> 
+      <mapper type="glob" from="*_src.css" to="*.css"/>
+      <targetfile/>
+    </apply>
+  </target>
+
+  <target name="build" depends="minify" description="Build the distribution">
+    <zip destfile="${ant.project.name}-${project.version}.zip">
+      <fileset dir="tinywebtex" includes="*"/>
+    </zip>
+  </target>
+
+  <target name="clean" description="Remove build ouput">
+    <delete dir="build"/>
+    <delete>
+      <fileset dir="." includes="**/*~" defaultexcludes="false"/>
+      <fileset dir="." includes="*.zip"/>
+    </delete>
+  </target>
+</project>
