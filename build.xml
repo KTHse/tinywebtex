@@ -31,7 +31,7 @@
 
   <target name="build" depends="minify" description="Build the distribution">
     <zip destfile="${ant.project.name}-${project.version}.zip">
-      <fileset dir="tinywebtex" includes="*"/>
+      <fileset dir="tinywebtex" includes="**/*"/>
     </zip>
   </target>
 
