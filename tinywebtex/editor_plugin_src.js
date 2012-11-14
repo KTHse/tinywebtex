@@ -20,6 +20,9 @@
 		init : function(ed, url) {
 			// Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
 			ed.addCommand('mceTinyWebtex', function() {
+			    if (ed.dom.getAttrib(ed.selection.getNode(), 'class', '').indexOf('mceItem') != -1)
+                    return;
+                                        
 				ed.windowManager.open({
 					file : url + '/dialog.htm',
 					width : 500 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
@@ -42,9 +45,9 @@
             ed.addShortcut('ctrl+e', "Equation editor", 'mceTinyWebtex');
                         
             // Add a node change handler, selects the button in the UI when a image is selected
-            ed.onNodeChange.add(function(ed, cm, n) {
-                    cm.setActive('tinywebtex', n.nodeName == 'IMG' && n.className.match('webtex'));
-            });
+            ed.onNodeChange.add(function(ed, cm, n, co) {
+                cm.setActive('tinywebtex', !co && (n.nodeName == 'IMG') && n.className.match('webtex'));
+            });
 		},
 
 		/**
