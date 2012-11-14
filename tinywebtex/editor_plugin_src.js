@@ -22,12 +22,12 @@
 			ed.addCommand('mceTinyWebtex', function() {
 				ed.windowManager.open({
 					file : url + '/dialog.htm',
-					width : 320 + parseInt(ed.getLang('example.delta_width', 0)),
-					height : 120 + parseInt(ed.getLang('example.delta_height', 0)),
+					width : 500 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
+					height : 200 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
 					inline : 1
 				}, {
 					plugin_url : url, // Plugin absolute URL
-					some_custom_arg : 'custom arg' // Custom argument
+					webtex_url : 'http://localhost:8080/webtex' // Base URL of WebTex service
 				});
 			});
 
@@ -38,10 +38,13 @@
 				image : url + '/img/button.png'
 			});
 
-			// Add a node change handler, selects the button in the UI when a image is selected
-			ed.onNodeChange.add(function(ed, cm, n) {
-				cm.setActive('tinywebtex', n.nodeName == 'IMG');
-			});
+			// ctrl+e = cmd+e on a mac
+            ed.addShortcut('ctrl+e', "Equation editor", 'mceTinyWebtex');
+                        
+            // Add a node change handler, selects the button in the UI when a image is selected
+            ed.onNodeChange.add(function(ed, cm, n) {
+                    cm.setActive('tinywebtex', n.nodeName == 'IMG' && n.className == 'webtex');
+            });
 		},
 
 		/**

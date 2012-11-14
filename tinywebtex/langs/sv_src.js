@@ -1,3 +1,5 @@
 tinyMCE.addI18n('sv.tinywebtex',{
-	desc : 'Matte-editor'
+	delta_width : 0,
+	delta_height : 0,
+	desc : 'Ekvationseditor'
 });

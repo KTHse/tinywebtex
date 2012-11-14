@@ -1,3 +1,5 @@
 tinyMCE.addI18n('en.tinywebtex',{
-	desc : 'Math Editor'
+	delta_width : 0,
+	delta_height : 0,
+	desc : 'Equation Editor'
 });
