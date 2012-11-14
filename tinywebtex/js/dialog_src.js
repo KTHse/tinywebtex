@@ -33,7 +33,7 @@ var TinyWebtexDialog = {
         }
 
         img = div.childNodes.item(0);
-        if ((img.nodeName == 'IMG') && (img.className.search("webtex") >= 0)) {
+        if ((img.nodeName == 'IMG') && img.className.match("webtex")) {
             f.tex.value = img.alt.substr(4);
             f.uuid.value = img.getAttribute('longdesc');
         } else if (img.nodeType == Node.TEXT_NODE) {
