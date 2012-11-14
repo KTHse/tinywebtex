@@ -1,5 +1,8 @@
 tinyMCEPopup.requireLangPack();
 
+/*
+ * Add trim() to strings for browsers which don't have them.
+ */
 if (!String.prototype.trim) {
     String.prototype.trim = function() {
         return this.replace(/^\s+|\s+$/g, '');
@@ -9,6 +12,9 @@ if (!String.prototype.trim) {
 var TinyWebtexDialog = {
     webtex_url : "/webtex",
 
+    /*
+     * Set up the window and populate data from selection in editor if any.
+     */
     init : function() {
         var f = document.forms[0],
             ed = tinyMCEPopup.editor,
@@ -35,7 +41,12 @@ var TinyWebtexDialog = {
         }
     },
 
-    httpRequest : function(img) {
+    /*
+     * Send an asynchronous call to WebTex backend service for image,
+     * will update the editor if successfull, indicate error states
+     * otherwise.
+     */
+    callWebTex : function(img) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -45,6 +56,7 @@ var TinyWebtexDialog = {
                     depth : xmlhttp.getResponseHeader("X-MathImage-depth")
                 };
                 if (img.webtex.log == "OK") {
+                    img.className = "webtex dp" + img.webtex.depth.replace("-", "_");
                     TinyWebtexDialog.updateEditor(img);
                 } else {
                     unset(img);
@@ -55,6 +67,9 @@ var TinyWebtexDialog = {
         xmlhttp.send();
     },
 
+    /*
+     * Updates the editor with the new image, used as callback from callWebTex.
+     */
     updateEditor : function(img) {
         var f = document.forms[0],
             ed = tinyMCEPopup.editor,
@@ -68,16 +83,20 @@ var TinyWebtexDialog = {
         }
     },
 
+    /*
+     * Callback for keyup events in tex field of dialog. Will call for
+     * a new image from WebTex if we believe that the contents have 
+     * changed.
+     */
     update : function() {
         var f = document.forms[0],
             ed = tinyMCEPopup.editor,
-            old = ed.dom.select('img[longdesc=' + f.uuid.value + ']'),
             tex = f.tex.value.trim(), 
+            old = ed.dom.select('img[longdesc=' + f.uuid.value + ']'),
             img;
 
         if (tex == "" && old.length) {
             ed.dom.remove(old[0]);
-            return;
         }
 
         if (tex == "" || (old.length && tex == old[0].alt.substr(4))) {
@@ -85,19 +104,18 @@ var TinyWebtexDialog = {
         }
 
         img = ed.dom.create('img', {
-            'src' : TinyWebtexDialog.webtex_url + '/WebTex?tex=' + encodeURIComponent(f.tex.value),
-            'alt' : 'tex:' + f.tex.value.trim(),
+            'src' : TinyWebtexDialog.webtex_url + '/WebTex?tex=' + encodeURIComponent(tex),
+            'alt' : 'tex:' + tex,
             'class' : 'webtex',
             'longdesc' : f.uuid.value
         });
-        TinyWebtexDialog.httpRequest(img);
+        TinyWebtexDialog.callWebTex(img);
     },
 
+    /*
+     * Callback for the done button in dialog. 
+     */
     done : function() {
-        var f = document.forms[0],
-            ed = tinyMCEPopup.editor,
-            img = ed.dom.select('img[longdesc=' + f.uuid.value + ']');
-//        img.id = null;
         tinyMCEPopup.close();
     }
 };
