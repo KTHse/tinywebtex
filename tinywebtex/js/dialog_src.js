@@ -1,3 +1,13 @@
+/*
+ * Copyright (C) 2012 KTH, Royal Institute of Technology (http://www.kth.se/)
+ * 
+ * This file is part of tinywebtex.
+ * 
+ * WebTex is free software: you can redistribute it and/or modify
+ * it under the terms of a MIT style license which is included in 
+ * the software.
+ */
+
 tinyMCEPopup.requireLangPack();
 
 /*
