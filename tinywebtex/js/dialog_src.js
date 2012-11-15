@@ -96,6 +96,7 @@ var TinyWebtexDialog = {
             old = ed.dom.select('img[longdesc=' + f.uuid.value + ']');
 
         img.className = "webtex dp" + img.webtex.depth.replace("-", "_");
+        
         ed.undoManager.add();
         if (old.length) {
             ed.dom.replace(img, old[0]);
