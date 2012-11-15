@@ -103,7 +103,7 @@ var TinyWebtexDialog = {
     updateEditor : function(img) {
         var f = document.forms[0],
             ed = tinyMCEPopup.editor,
-            old = ed.dom.select('img[longdesc=' + f.uuid.value + ']');
+            old = ed.dom.select('img[longdesc={0}]'.format(f.uuid.value));
 
         img.className = "webtex dp" + img.webtex.depth.replace("-", "_");
         
@@ -113,6 +113,7 @@ var TinyWebtexDialog = {
         } else {
             ed.selection.setNode(img);
         }
+        ed.execCommand('mceRepaint', false);
     },
 
     
@@ -122,9 +123,9 @@ var TinyWebtexDialog = {
         e.textContent = str[0];
         if (str.length > 1) {
             if (str[1].length > 30) {
-                e.innerHTML += ': <i>...' + str[1].slice(-30) + '</i>';
+                e.innerHTML += ': <i>...{0}</i>'.format(str[1].slice(-30));
             } else {
-                e.innerHTML += ': <i>' + str[1] + '</i>';
+                e.innerHTML += ': <i>{0}</i>'.format(str[1]);
             }
         }
     },
@@ -145,7 +146,7 @@ var TinyWebtexDialog = {
             ed = tinyMCEPopup.editor,
             tex = f.tex.value.trim(),
             s = f.size.value,
-            old = ed.dom.select('img[longdesc=' + f.uuid.value + ']'),
+            old = ed.dom.select('img[longdesc={0}]'.format(f.uuid.value)),
             img;
 
         if (tex == "" && old.length) {
