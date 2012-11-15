@@ -54,6 +54,18 @@ td.twStatus #counter {
 .twSymbols, .twExpressions {
     display: none;
 }
+span.working {
+    background-image:url('../img/progress.gif');
+    background-size: 16px 16px;
+    width: 16px;
+    height: 16px;
+}
+span.alert {
+    background-image:url('../img/alert.gif');
+    background-size: 16px 16px;
+    width: 16px;
+    height: 16px;
+}
 .error {
     color: red;
 }

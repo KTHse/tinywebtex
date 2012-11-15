@@ -70,18 +70,23 @@ var TinyWebtexDialog = {
     callWebTex : function(img) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                img.webtex = {
-                    log : decodeURIComponent(xmlhttp.getResponseHeader("X-MathImage-log")),
-                    tex : decodeURIComponent(xmlhttp.getResponseHeader("X-MathImage-tex")),
-                    depth : xmlhttp.getResponseHeader("X-MathImage-depth")
-                };
-                TinyWebtexDialog.updateCounter(img);            
-                if (img.webtex.log == "OK") {
-                    TinyWebtexDialog.showOk();
-                    TinyWebtexDialog.updateEditor(img);
-                } else {
-                    TinyWebtexDialog.showError(img.webtex.log);
+            if (xmlhttp.readyState < 4) {
+                TinyWebtexDialog.inProgress(true);
+            } else if (xmlhttp.readyState == 4) {
+                TinyWebtexDialog.inProgress(false);
+                if (xmlhttp.status == 200 || xmlhttp.status == 304) {
+                    img.webtex = {
+                        log : decodeURIComponent(xmlhttp.getResponseHeader("X-MathImage-log")),
+                        tex : decodeURIComponent(xmlhttp.getResponseHeader("X-MathImage-tex")),
+                        depth : xmlhttp.getResponseHeader("X-MathImage-depth")
+                    };
+                    TinyWebtexDialog.updateCounter(img);            
+                    if (img.webtex.log == "OK") {
+                        TinyWebtexDialog.showOk();
+                        TinyWebtexDialog.updateEditor(img);
+                    } else {
+                        TinyWebtexDialog.showError(img.webtex.log);
+                    }
                 }
             }
         };
@@ -127,21 +132,32 @@ var TinyWebtexDialog = {
 
     
     showError : function(error) {
-        var e = document.getElementById("error"), 
-            str = error.substr(2).split(/.\Wl.[0-9]+\W/g);
-        e.textContent = str[0];
-        if (str.length > 1) {
-            if (str[1].length > 30) {
-                e.innerHTML += ': <i>...{0}</i>'.format(str[1].slice(-30));
-            } else {
-                e.innerHTML += ': <i>{0}</i>'.format(str[1]);
-            }
-        }
+        document.getElementById("error").className = "alert";
+        // var e = document.getElementById("error"), 
+            // str = error.substr(2).split(/.\Wl.[0-9]+\W/g);
+        // e.textContent = str[0];
+        // if (str.length > 1) {
+            // if (str[1].length > 30) {
+                // e.innerHTML += ': <i>...{0}</i>'.format(str[1].slice(-30));
+            // } else {
+                // e.innerHTML += ': <i>{0}</i>'.format(str[1]);
+            // }
+        // }
     },
 
 
     showOk : function() {
-        document.getElementById("error").textContent = '';
+        document.getElementById("error").className = "";
+//        document.getElementById("error").textContent = '';
+    },
+
+
+    inProgress : function(inProgress) {
+        if (inProgress) {
+            document.getElementById("error").className = "working";
+        } else {
+            document.getElementById("error").className = "";
+        }
     },
 
 
