@@ -1,0 +1,23 @@
+.twArea {
+    overflow: auto;   
+}
+.twInput {
+    float: left; 
+    margin-right: 5px;
+}
+.twShortcuts {
+    float: right;
+    margin-left: 5px;    
+}
+.twStatus {
+    height: 3ex;
+}
+.twStatus #error {
+    float: left;
+}
+.twStatus #counter {
+    float: right;
+}
+.error {
+    color: red;
+}

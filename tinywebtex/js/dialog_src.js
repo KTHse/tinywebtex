@@ -11,6 +11,7 @@ if (!String.prototype.trim) {
 
 var TinyWebtexDialog = {
     webtex_url : "/webtex",
+    max_expr : 2000,
 
     /*
      * Set up the window and populate data from selection in editor if any.
@@ -55,11 +56,12 @@ var TinyWebtexDialog = {
                     tex : decodeURIComponent(xmlhttp.getResponseHeader("X-MathImage-tex")),
                     depth : xmlhttp.getResponseHeader("X-MathImage-depth")
                 };
+                TinyWebtexDialog.updateCounter(img);            
                 if (img.webtex.log == "OK") {
-                    img.className = "webtex dp" + img.webtex.depth.replace("-", "_");
+                    TinyWebtexDialog.showOk();            
                     TinyWebtexDialog.updateEditor(img);
                 } else {
-                    unset(img);
+                    TinyWebtexDialog.showError(img.webtex.log);
                 }
             }
         };
@@ -70,11 +72,25 @@ var TinyWebtexDialog = {
     /*
      * Updates the editor with the new image, used as callback from callWebTex.
      */
+    updateCounter : function(img) {
+        var c = document.getElementById("counter"),
+            l = TinyWebtexDialog.max_expr - img.src.split("?tex=")[1].length
+
+        c.textContent = l;
+        if (c.textContent < 0) {
+            c.className = "error";
+        }
+    },
+    
+    /*
+     * Updates the editor with the new image, used as callback from callWebTex.
+     */
     updateEditor : function(img) {
         var f = document.forms[0],
             ed = tinyMCEPopup.editor,
             old = ed.dom.select('img[longdesc=' + f.uuid.value + ']');
 
+        img.className = "webtex dp" + img.webtex.depth.replace("-", "_");
         ed.undoManager.add();
         if (old.length) {
             ed.dom.replace(img, old[0]);
@@ -82,6 +98,26 @@ var TinyWebtexDialog = {
             ed.selection.setNode(img);
         }
     },
+
+    
+    showError : function(error) {
+        var e = document.getElementById("error"), 
+            str = error.substr(2).split(/.\Wl.[0-9]+\W/g);
+        e.textContent = str[0];
+        if (str.length > 1) {
+            if (str[1].length > 30) {
+                e.innerHTML += ': <i>...' + str[1].slice(-30) + '</i>';
+            } else {
+                e.innerHTML += ': <i>' + str[1] + '</i>';
+            }
+        }
+    },
+
+
+    showOk : function() {
+        document.getElementById("error").textContent = '';
+    },
+
 
     /*
      * Callback for keyup events in tex field of dialog. Will call for
@@ -99,7 +135,8 @@ var TinyWebtexDialog = {
             ed.dom.remove(old[0]);
         }
 
-        if (tex == "" || (old.length && tex == old[0].alt.substr(4))) {
+        if (tex == "") {
+            TinyWebtexDialog.showOk();            
             return;
         }
 
@@ -110,6 +147,26 @@ var TinyWebtexDialog = {
             'longdesc' : f.uuid.value
         });
         TinyWebtexDialog.callWebTex(img);
+    },
+    
+    insertAtCursor : function(str) {
+        var f = document.forms[0],
+            el = f.tex,
+            val = el.value, 
+            endIndex, 
+            range;
+        if (typeof el.selectionStart != "undefined" && typeof el.selectionEnd != "undefined") {
+            endIndex = el.selectionEnd;
+            el.value = val.slice(0, endIndex) + str + val.slice(endIndex);
+            el.selectionStart = el.selectionEnd = endIndex + str.length;
+        } else if (typeof document.selection != "undefined" && typeof document.selection.createRange != "undefined") {
+            // IE <= 8.
+            el.focus();
+            range = document.selection.createRange();
+            range.collapse(false);
+            range.text = str;
+            range.select();
+        }
     },
 
     /*

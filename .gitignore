@@ -1,5 +1,7 @@
 *.zip
+*.css
+!*_src.css
 *.js
-*~
 !*_src.js
+*~
 
