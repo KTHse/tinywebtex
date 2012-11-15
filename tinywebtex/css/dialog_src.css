@@ -37,6 +37,9 @@ td.twStatus {
 }
 td.twStatus span {
     margin: 0 5px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
 }
 td.twStatus #error {
     float: left;
@@ -54,17 +57,17 @@ td.twStatus #counter {
 .twSymbols, .twExpressions {
     display: none;
 }
-span.working {
+td.twStatus span.working {
     background-image:url('../img/progress.gif');
     background-size: 16px 16px;
-    width: 16px;
-    height: 16px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
 }
-span.alert {
+td.twStatus span.alert {
     background-image:url('../img/alert.gif');
     background-size: 16px 16px;
-    width: 16px;
-    height: 16px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
 }
 .error {
     color: red;

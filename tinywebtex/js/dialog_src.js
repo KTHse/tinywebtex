@@ -82,10 +82,10 @@ var TinyWebtexDialog = {
                     };
                     TinyWebtexDialog.updateCounter(img);            
                     if (img.webtex.log == "OK") {
-                        TinyWebtexDialog.showOk();
+                        TinyWebtexDialog.isOk(true);            
                         TinyWebtexDialog.updateEditor(img);
                     } else {
-                        TinyWebtexDialog.showError(img.webtex.log);
+                        TinyWebtexDialog.isOk(false, img.webtex.log);            
                     }
                 }
             }
@@ -131,10 +131,15 @@ var TinyWebtexDialog = {
     },
 
     
-    showError : function(error) {
-        document.getElementById("error").className = "alert";
-        // var e = document.getElementById("error"), 
-            // str = error.substr(2).split(/.\Wl.[0-9]+\W/g);
+    isOk : function(isOk, str) {
+        var e = document.getElementById("error");
+        if (isOk) {
+            e.className = "";
+            e.textContent = "";
+        } else {
+            e.className = "alert";
+            e.textContent = str.substr(2).split(/.\Wl.[0-9]+\W/g)[0]
+        }
         // e.textContent = str[0];
         // if (str.length > 1) {
             // if (str[1].length > 30) {
@@ -142,21 +147,18 @@ var TinyWebtexDialog = {
             // } else {
                 // e.innerHTML += ': <i>{0}</i>'.format(str[1]);
             // }
-        // }
-    },
-
-
-    showOk : function() {
-        document.getElementById("error").className = "";
-//        document.getElementById("error").textContent = '';
+        // }
     },
 
 
     inProgress : function(inProgress) {
+        var e = document.getElementById("error");
+
+        e.textContent = "";
         if (inProgress) {
-            document.getElementById("error").className = "working";
+            e.className = "working";
         } else {
-            document.getElementById("error").className = "";
+            e.className = "";
         }
     },
 
@@ -180,7 +182,7 @@ var TinyWebtexDialog = {
 
         if (tex == "") {
             TinyWebtexDialog.updateCounter();
-            TinyWebtexDialog.showOk();            
+            TinyWebtexDialog.isOk(true);            
             return;
         }
 
