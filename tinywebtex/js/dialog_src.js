@@ -27,14 +27,13 @@ var TinyWebtexDialog = {
     init : function() {
         var f = document.forms[0],
             ed = tinyMCEPopup.editor,
-            div = document.createElement('div'),
+            div = ed.dom.create('div', {}, ed.selection.getContent()),
             img;
 
         TinyWebtexDialog.webtex_url = tinyMCEPopup.getWindowArg('webtex_url');
         f.tex.onkeyup = TinyWebtexDialog.update;
         f.size.onchange = TinyWebtexDialog.update;
         f.uuid.value = ed.dom.uniqueId('uuid-');
-        div.innerHTML = ed.selection.getContent();
 
         f.tex.focus();
 
