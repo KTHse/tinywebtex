@@ -1,16 +1,41 @@
 .twArea {
-    overflow: auto;   
+    overflow: auto;
+    margin: 0 0 10px 0;   
 }
 .twInput {
     float: left; 
-    margin-right: 5px;
+    margin: 5px 5px 0 0;
+    border-collapse: collapse;
+}
+.twInput tr {
+    margin: 0;
+    padding: 0;
+}
+.twInput td {
+    border-color: gray;
+    border-width: 1px;
+    border-style: solid;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+}
+.twInput textarea {
+    border: 0;
+    margin: 0;
+    padding: 5px;
+    overflow: auto;
 }
 .twShortcuts {
     float: right;
     margin-left: 5px;    
 }
 .twStatus {
+    color: gray;
     height: 3ex;
+    padding: 0;
+}
+.twStatus span {
+    margin: 0 5px;
 }
 .twStatus #error {
     float: left;

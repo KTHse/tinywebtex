@@ -40,6 +40,7 @@ var TinyWebtexDialog = {
         } else if (img.nodeType == Node.TEXT_NODE) {
             f.tex.value = img.textContent;
         }
+        TinyWebtexDialog.update();            
     },
 
     /*
@@ -58,7 +59,7 @@ var TinyWebtexDialog = {
                 };
                 TinyWebtexDialog.updateCounter(img);            
                 if (img.webtex.log == "OK") {
-                    TinyWebtexDialog.showOk();            
+                    TinyWebtexDialog.showOk();
                     TinyWebtexDialog.updateEditor(img);
                 } else {
                     TinyWebtexDialog.showError(img.webtex.log);
@@ -68,14 +69,18 @@ var TinyWebtexDialog = {
         xmlhttp.open("GET", img.src, true);
         xmlhttp.send();
     },
-
+    
+    
     /*
      * Updates the editor with the new image, used as callback from callWebTex.
      */
     updateCounter : function(img) {
-        var c = document.getElementById("counter"),
-            l = TinyWebtexDialog.max_expr - img.src.split("?tex=")[1].length
-
+        var c = document.getElementById("counter"), 
+            l = TinyWebtexDialog.max_expr;
+        
+        if (img) {
+            l -= img.src.split("?tex=")[1].length;
+        }
         c.textContent = l;
         if (c.textContent < 0) {
             c.className = "error";
@@ -136,6 +141,7 @@ var TinyWebtexDialog = {
         }
 
         if (tex == "") {
+            TinyWebtexDialog.updateCounter();
             TinyWebtexDialog.showOk();            
             return;
         }

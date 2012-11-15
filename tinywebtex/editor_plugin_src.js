@@ -27,7 +27,7 @@
 					file : url + '/dialog.htm',
 					width : 520 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
 					height : 200 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
-					inline : 0
+					inline : 1
 				}, {
 					plugin_url : url, // Plugin absolute URL
 					webtex_url : 'http://localhost:8080/webtex' // Base URL of WebTex service
