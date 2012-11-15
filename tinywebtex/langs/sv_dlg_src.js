@@ -3,5 +3,6 @@ tinyMCE.addI18n('sv.tinywebtex_dlg',{
     done : 'Klar',
     editExpression : 'Redigera matematiskt uttryck (TeX)',
     help : 'Hj&auml;lp',
+    size : 'Storlek',
     title : 'Ekvationseditor'
 });

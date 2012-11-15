@@ -9,6 +9,14 @@ if (!String.prototype.trim) {
     }
 }
 
+String.prototype.format = function() {
+    var formatted = this;
+    for (arg in arguments) {
+        formatted = formatted.replace("{" + arg + "}", arguments[arg]);
+    }
+    return formatted;
+};
+    
 var TinyWebtexDialog = {
     webtex_url : "/webtex",
     max_expr : 2000,
@@ -24,6 +32,7 @@ var TinyWebtexDialog = {
 
         TinyWebtexDialog.webtex_url = tinyMCEPopup.getWindowArg('webtex_url');
         f.tex.onkeyup = TinyWebtexDialog.update;
+        f.size.onchange = TinyWebtexDialog.update;
         f.uuid.value = ed.dom.uniqueId('uuid-');
         div.innerHTML = ed.selection.getContent();
 
@@ -36,6 +45,7 @@ var TinyWebtexDialog = {
         img = div.childNodes.item(0);
         if ((img.nodeName == 'IMG') && img.className.match("webtex")) {
             f.tex.value = img.alt.substr(4);
+            f.size.value = img.src.split(/[\?&]D=/g)[1].substr(0,1);
             f.uuid.value = img.getAttribute('longdesc');
         } else if (img.nodeType == Node.TEXT_NODE) {
             f.tex.value = img.textContent;
@@ -79,7 +89,7 @@ var TinyWebtexDialog = {
             l = TinyWebtexDialog.max_expr;
         
         if (img) {
-            l -= img.src.split("?tex=")[1].length;
+            l -= img.src.split(/[\?&]tex=/g)[1].length;
         }
         c.textContent = l;
         if (c.textContent < 0) {
@@ -133,7 +143,8 @@ var TinyWebtexDialog = {
     update : function() {
         var f = document.forms[0],
             ed = tinyMCEPopup.editor,
-            tex = f.tex.value.trim(), 
+            tex = f.tex.value.trim(),
+            s = f.size.value,
             old = ed.dom.select('img[longdesc=' + f.uuid.value + ']'),
             img;
 
@@ -148,7 +159,7 @@ var TinyWebtexDialog = {
         }
 
         img = ed.dom.create('img', {
-            'src' : TinyWebtexDialog.webtex_url + '/WebTex?tex=' + encodeURIComponent(tex),
+            'src' : "{0}/WebTex?D={1}&tex={2}".format(TinyWebtexDialog.webtex_url, s, encodeURIComponent(tex)),
             'alt' : 'tex:' + tex,
             'class' : 'webtex',
             'longdesc' : f.uuid.value

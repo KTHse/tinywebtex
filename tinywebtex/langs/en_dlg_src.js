@@ -3,5 +3,6 @@ tinyMCE.addI18n('en.tinywebtex_dlg',{
     done : 'Done',
     editExpression : 'Edit mathematical expression (TeX)',
     help : 'Help',
+    size : 'Size',
     title : 'Equation Editor'
 });

@@ -35,6 +35,7 @@ td.twStatus #counter {
     float: right;
 }
 .twShortcuts {
+    padding: 5px 0;
     margin-bottom: 10px;
 }
 .twShortcuts #help {

@@ -26,7 +26,7 @@
 				ed.windowManager.open({
 					file : url + '/dialog.htm',
 					width : 520 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
-					height : 200 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
+					height : 220 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
 					inline : 1
 				}, {
 					plugin_url : url, // Plugin absolute URL

@@ -23,7 +23,19 @@
     </table>
     <div class="twShortcuts">
         <a id="help" href="http://en.wikipedia.org/wiki/Help:Displaying_a_formula#Functions.2C_symbols.2C_special_characters" target="_blank">{#tinywebtex_dlg.help}</a>
-        <span>buttons</span>
+        <label for="size">{#tinywebtex_dlg.size}</label>
+        <select name="size" id="size">
+            <option value="0">1</option>
+            <option value="1" selected="selected">2</option>
+            <option value="2">3</option>
+            <option value="3">4</option>
+            <option value="4">5</option>
+            <option value="5">6</option>
+            <option value="6">7</option>
+            <option value="7">8</option>
+            <option value="8">9</option>
+            <option value="9">10</option>
+        </select>
     </div>
 	<div class="mceActionPanel">
 		<input type="button" id="insert" name="insert" value="{#tinywebtex_dlg.done}" onclick="TinyWebtexDialog.done();" />
