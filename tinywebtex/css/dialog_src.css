@@ -1,44 +1,47 @@
-.twArea {
-    margin: 0 0 10px 0;   
-    overflow: auto;
-}
-.twInput {
-    float: left; 
+table.twInput {
     margin: 5px 5px 0 0;
+    width: 100%;
     border-collapse: collapse;
 }
-.twInput tr {
-    margin: 0;
-    padding: 0;
-}
-.twInput td {
-    margin: 0;
-    padding: 0;
+td.twTex {
+    background-color: #fff;
     border: 1px solid gray;
-}
-.twInput textarea {
     margin: 0;
-    padding: 5px;
+    padding: 0;
+    border-collapse: collapse;
+}
+td.twTex textarea {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    width: 100%;
+    height: 10em;
     border: 0;
     overflow: auto;
 }
-.twShortcuts {
-    float: right;
-    margin-left: 5px;    
-}
-.twStatus {
+td.twStatus {
     padding: 0;
     color: gray;
     height: 3ex;
+    border: 1px solid gray;
 }
-.twStatus span {
+td.twStatus span {
     margin: 0 5px;
 }
-.twStatus #error {
+td.twStatus #error {
     float: left;
 }
-.twStatus #counter {
+td.twStatus #counter {
     float: right;
+}
+.twShortcuts {
+    margin-bottom: 10px;
+}
+.twShortcuts #help {
+    float: right;
+}
+.twSymbols, .twExpressions {
+    display: none;
 }
 .error {
     color: red;
