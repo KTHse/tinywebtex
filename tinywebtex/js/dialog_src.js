@@ -79,6 +79,7 @@ var TinyWebtexDialog = {
                 f.tex.value = img.textContent;
             }
         }
+        TinyWebtexDialog.initShortcuts();            
         TinyWebtexDialog.update();            
         f.tex.focus();
     },
@@ -278,6 +279,18 @@ var TinyWebtexDialog = {
             range.collapse(false);
             range.text = str;
             range.select();
+        }
+    },
+
+
+    initShortcuts : function() {
+        var shortcuts = document.getElementsByClassName("shortcut"), i;
+            
+        for (i = 0; i < shortcuts.length; i++) {
+            shortcuts.item(i).onclick = function() {
+                TinyWebtexDialog.insertAtCursor(this.title);
+                TinyWebtexDialog.update();            
+            };          
         }
     },
 

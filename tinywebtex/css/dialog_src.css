@@ -69,6 +69,23 @@ td.twStatus #counter {
 .twSymbols, .twExpressions {
     display: none;
 }
+.twSymbols div {
+    background-image: url(../img/sprite.png);
+    background-repeat: no-repeat;
+    background-size: 480px 24px;
+    width: 24px;
+    height: 24px;
+    border: 1px solid gray;
+}
+.twSymbols div#sqrtx {
+    background-position: 0 0;
+}
+.twSymbols div#sqrtxy {
+    background-position: -24px 0;
+}
+.twSymbols div:hover {
+    border: 2px solid gray;
+}
 .error {
     color: red;
 }
