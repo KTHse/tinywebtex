@@ -237,32 +237,37 @@ var TinyWebtexDialog = {
             ed = tinyMCEPopup.editor,
             tex = f.tex.value.trim(),
             s = f.size.value,
-            old = ed.dom.select('img[longdesc={0}]'.format(f.uuid.value)),
-            img;
-
-        if (tex == "" && old.length) {
-            ed.dom.remove(old[0]);
-        }
+            old = ed.dom.select('img[longdesc={0}]'.format(f.uuid.value));
 
         if (tex == "") {
+            // Expression is empty, reset status.
             TinyWebtexDialog.updateCounter();
-            TinyWebtexDialog.isOk(true);            
+            TinyWebtexDialog.isOk(true);
+
+            if (old.length > 0) {
+                // Remove any old image.
+                ed.dom.remove(old[0]);
+                ed.execCommand('mceRepaint', false);
+            }
             return;
         }
 
         if (old.length > 0 &&
             tex == TinyWebtexDialog.getTex(old[0]) && 
             s == TinyWebtexDialog.getSize(old[0])) {
+            // No changes compared to old image.
             return;
         }
 
-        img = ed.dom.create('img', {
-            'src' : "{0}/WebTex?D={1}&tex={2}".format(TinyWebtexDialog.url, s, encodeURIComponent(tex)),
-            'alt' : 'tex:' + tex,
-            'class' : 'webtex',
-            'longdesc' : f.uuid.value
-        });
-        TinyWebtexDialog.callWebTex(img);
+        // New or modified image.
+        TinyWebtexDialog.callWebTex(
+            ed.dom.create('img', {
+                'src' : "{0}/WebTex?D={1}&tex={2}".format(TinyWebtexDialog.url, s, encodeURIComponent(tex)),
+                'alt' : 'tex:' + tex,
+                'class' : 'webtex',
+                'longdesc' : f.uuid.value
+            })
+        );
     },
     
     
