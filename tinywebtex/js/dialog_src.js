@@ -10,6 +10,7 @@
 
 tinyMCEPopup.requireLangPack();
 
+
 /*
  * Add trim() to strings for browsers which don't have them.
  */
@@ -19,6 +20,11 @@ if (!String.prototype.trim) {
     }
 }
 
+
+/*
+ * A sprintf kind of format() enabling constructions like:
+ * "Apples: {0}, Pears: {1}".format("Golden Delicious", "Alexander Lucas");
+ */
 String.prototype.format = function() {
     var formatted = this;
     for (arg in arguments) {
@@ -26,10 +32,15 @@ String.prototype.format = function() {
     }
     return formatted;
 };
-    
+
+
+/*    
+ * JavaScript object driving the WebTex dialog.
+ */
 var TinyWebtexDialog = {
     webtex_url : "/webtex",
     max_expr : 2000,
+
 
     /*
      * Set up the window and populate data from selection in editor if any.
@@ -43,7 +54,7 @@ var TinyWebtexDialog = {
         TinyWebtexDialog.webtex_url = tinyMCEPopup.getWindowArg('webtex_url');
         f.tex.onkeyup = TinyWebtexDialog.update;
         f.size.onchange = TinyWebtexDialog.update;
-        f.uuid.value = ed.dom.uniqueId('uuid-');
+        f.uuid.value = TinyWebtexDialog.randomId();
 
         f.tex.focus();
 
@@ -61,6 +72,18 @@ var TinyWebtexDialog = {
         }
         TinyWebtexDialog.update();            
     },
+    
+    
+    randomId: function() {
+        var CHARS = "0123456789abcdef",
+            id = "uuid-", i;
+            
+        for (i = 0; i < 32; i++) {
+            id += CHARS[Math.floor(Math.random() * CHARS.length)];
+        }
+        return id;
+    },
+    
 
     /*
      * Send an asynchronous call to WebTex backend service for image,
@@ -110,6 +133,7 @@ var TinyWebtexDialog = {
             c.className = "error";
         }
     },
+    
     
     /*
      * Updates the editor with the new image, used as callback from callWebTex.
