@@ -36,11 +36,11 @@
                     // Plugin absolute URL.
 					plugin_url : url,
 					// Default WebTex image size.
-                    default_size : WEBTEX_SIZE ? WEBTEX_SIZE : 1,
+                    default_size : typeof WEBTEX_SIZE === "undefined" ?  1 : WEBTEX_SIZE,
                     // Max Length of WebTex expression before warning.
-                    max_length : WEBTEX_MAX_LEN ? WEBTEX_MAX_LEN : 2000,
+                    max_length : typeof WEBTEX_MAX_LEN === "undefined" ? 2000 : WEBTEX_MAX_LEN,
                     // Base URL of WebTex service.
-                    webtex_url : WEBTEX_URL ? WEBTEX_URL : '/webtex'
+                    webtex_url : typeof WEBTEX_URL === "undefined" ? '/webtex' : WEBTEX_URL
 				});
 			});
 

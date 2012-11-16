@@ -49,7 +49,7 @@ String.prototype.format = function() {
 var TinyWebtexDialog = {
     url : null,
     size : null,
-    max_len : null,
+    max : null,
 
     /*
      * Set up the window and populate data from selection in editor if any.
@@ -156,7 +156,7 @@ var TinyWebtexDialog = {
      */
     updateCounter : function(img) {
         var c = document.getElementById("counter"), 
-            l = TinyWebtexDialog.max_len;
+            l = TinyWebtexDialog.max;
         
         if (img) {
             l -= img.src.split(/[\?&]tex=/g)[1].length;
