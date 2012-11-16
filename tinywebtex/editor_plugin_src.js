@@ -52,7 +52,7 @@
 			});
 
 			// ctrl+e = cmd+e on a mac
-            ed.addShortcut('ctrl+e', "Equation editor", 'mceTinyWebtex');
+            ed.addShortcut('ctrl+e', 'tinywebtex.desc', 'mceTinyWebtex');
                         
             // Add a node change handler, selects the button in the UI when a image is selected
             ed.onNodeChange.add(function(ed, cm, n, co) {
