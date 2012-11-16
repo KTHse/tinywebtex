@@ -33,10 +33,14 @@
 					height : 225 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
 					inline : 1
 				}, {
-					plugin_url : url, // Plugin absolute URL
-                    default_size : 1, // Default WebTex image size
-                    max_length : 2000, // Max Length of WebTex expression before warning.
-                    webtex_url : 'http://localhost:8080/webtex' // Base URL of WebTex service
+                    // Plugin absolute URL.
+					plugin_url : url,
+					// Default WebTex image size.
+                    default_size : WEBTEX_SIZE ? WEBTEX_SIZE : 1,
+                    // Max Length of WebTex expression before warning.
+                    max_length : WEBTEX_MAX_LEN ? WEBTEX_MAX_LEN : 2000,
+                    // Base URL of WebTex service.
+                    webtex_url : WEBTEX_URL ? WEBTEX_URL : '/webtex'
 				});
 			});
 

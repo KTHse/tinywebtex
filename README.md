@@ -14,24 +14,45 @@ would with any other TinyMCE plugin, and add the `tinywebtex` button
 to the toolbar. See the TinyMCE customization documentation for
 details.
 
-You have to declare the variable WEBTEX_URL before the TinyMCE initalization
-and point it to the base URL for the WebTex service. Typically, this have
-to be on the same host (and port) in order to avoid cross-site-scripting (XSS) issues.
+The source-files (*_src.css and *_src.js) are included in the package and can be
+used for debugging purposes. However, without modification only the minimized 
+versions of these files are used and the source versions can be deleted.
+
+
+### Configuration
+
+You configure the plugin by declaring global variables in your page before it
+is used, se example below which includes the default values for these options.
 
 ```
 <script type="text/javascript">
-    WEBTEX_URL = '/webtex';
+    WEBTEX_URL = '/webtex'; // Base URL of the WebTex service
+    WEBTEX_SIZE = 1;        // Default WebTex image size ('D' parameter).
+    WEBTEX_MAX_LEN = 2000;  // Max length of encoded TeX expression before warning.
 </script>
 ```
+
+`WEBTEX_URL = "/webtex"` A string pointing to the base URL of the WebTex Service.
+Typically, this have to be on the same host (and port) in order to avoid 
+cross-site-scripting (XSS) issues.
 
 There are a number of options for proxying the WebTex application into
 the same namespace as the site using TinyMCE to avoid XSS if you use Apache httpd,
 like mod_jk or mod_proxy, see the Apache documentation for details. There should
 be similar possibilities for other web servers.
 
-The source-files (*_src.css and *_src.js) are included in the package and can be
-used for debugging purposes. However, without modification only the minimized 
-versions of these files are used and the source versions can be deleted.
+`WEBTEX_SIZE = 1` The default WebTex image size (the 'D' parameter to the service).
+
+`WEBTEX_MAX_LEN = 2000` The max length of the encoded TeX expression before the
+interface warns the user that the expression is too long. The limit is not 
+enforced however, but the interface warns the user that the expression is too long.
+
+You have to consider the length of the base URI of your service and the browsers
+using it. Internet Explorer has maximum lengths of 2083 characters for a URL, and
+2048 characters in the path part of the URL. This is most likely the most 
+restricting limitation of this parameter, but your WebTex servlet configuration
+may also come into play.
+
 
 ## Build from source
 
