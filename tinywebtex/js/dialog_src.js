@@ -47,9 +47,9 @@ String.prototype.format = function() {
  * JavaScript object driving the WebTex dialog.
  */
 var TinyWebtexDialog = {
-    webtex_url : "/webtex",
-    max_expr : 2000,
-
+    url : null,
+    size : null,
+    max_len : null,
 
     /*
      * Set up the window and populate data from selection in editor if any.
@@ -60,26 +60,27 @@ var TinyWebtexDialog = {
             div = ed.dom.create('div', {}, ed.selection.getContent()),
             img;
 
-        TinyWebtexDialog.webtex_url = tinyMCEPopup.getWindowArg('webtex_url');
+        TinyWebtexDialog.url = tinyMCEPopup.getWindowArg('webtex_url');
+        TinyWebtexDialog.size = tinyMCEPopup.getWindowArg('default_size');
+        TinyWebtexDialog.max = tinyMCEPopup.getWindowArg('max_length');
         f.tex.onkeyup = TinyWebtexDialog.update;
         f.size.onchange = TinyWebtexDialog.update;
-        f.uuid.value = TinyWebtexDialog.randomId();
-
-        f.tex.focus();
 
         if (!div.childNodes.length) {
-            return;
-        }
-
-        img = div.childNodes.item(0);
-        if ((img.nodeName == 'IMG') && img.className.match("webtex")) {
-            f.tex.value = img.alt.substr(4);
-            f.size.value = img.src.split(/[\?&]D=/g)[1].substr(0,1);
-            f.uuid.value = img.getAttribute('longdesc');
-        } else if (img.nodeType == Node.TEXT_NODE) {
-            f.tex.value = img.textContent;
+            f.uuid.value = TinyWebtexDialog.randomId();
+        } else {
+            img = div.childNodes.item(0);
+            if ((img.nodeName == 'IMG') && img.className.match("webtex")) {
+                f.tex.value = TinyWebtexDialog.getTex(img);
+                f.size.value = TinyWebtexDialog.getSize(img);
+                f.uuid.value = TinyWebtexDialog.getUuid(img);
+            } else if (img.nodeType == Node.TEXT_NODE) {
+                f.uuid.value = TinyWebtexDialog.randomId();
+                f.tex.value = img.textContent;
+            }
         }
         TinyWebtexDialog.update();            
+        f.tex.focus();
     },
     
     
@@ -93,6 +94,29 @@ var TinyWebtexDialog = {
         return id;
     },
     
+
+    getSize: function(img) {
+        var s = img.src.split(/[\?&]D=/g)[1].substr(0,1);
+        if (s) {
+            return s;
+        }
+        return TinyWebtexDialog.size;
+    },
+    
+    
+    getTex: function(img) {
+        return img.alt.substr(4);
+    },
+    
+    
+    getUuid: function(img) {
+        var s = img.getAttribute('longdesc');
+        if (s) {
+            return s;
+        }    
+        return TinyWebtexDialog.randomId();
+    },
+
 
     /*
      * Send an asynchronous call to WebTex backend service for image,
@@ -132,7 +156,7 @@ var TinyWebtexDialog = {
      */
     updateCounter : function(img) {
         var c = document.getElementById("counter"), 
-            l = TinyWebtexDialog.max_expr;
+            l = TinyWebtexDialog.max_len;
         
         if (img) {
             l -= img.src.split(/[\?&]tex=/g)[1].length;
@@ -226,7 +250,7 @@ var TinyWebtexDialog = {
         }
 
         img = ed.dom.create('img', {
-            'src' : "{0}/WebTex?D={1}&tex={2}".format(TinyWebtexDialog.webtex_url, s, encodeURIComponent(tex)),
+            'src' : "{0}/WebTex?D={1}&tex={2}".format(TinyWebtexDialog.url, s, encodeURIComponent(tex)),
             'alt' : 'tex:' + tex,
             'class' : 'webtex',
             'longdesc' : f.uuid.value

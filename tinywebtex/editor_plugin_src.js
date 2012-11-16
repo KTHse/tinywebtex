@@ -34,7 +34,9 @@
 					inline : 1
 				}, {
 					plugin_url : url, // Plugin absolute URL
-					webtex_url : 'http://localhost:8080/webtex' // Base URL of WebTex service
+                    default_size : 1, // Default WebTex image size
+                    max_length : 2000, // Max Length of WebTex expression before warning.
+                    webtex_url : 'http://localhost:8080/webtex' // Base URL of WebTex service
 				});
 			});
 
