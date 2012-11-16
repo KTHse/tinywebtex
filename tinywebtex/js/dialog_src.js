@@ -282,15 +282,42 @@ var TinyWebtexDialog = {
         }
     },
 
+    
+    closeMenues: function() {
+        var menues = document.getElementsByClassName("menuPane"),
+            i;
+            
+        for (i = 0; i < menues.length; i++) {
+            menues.item(i).style.display = "none";
+        }
+    },
+
 
     initShortcuts : function() {
-        var shortcuts = document.getElementsByClassName("shortcut"), i;
+        var shortcuts = document.getElementsByClassName("shortcut"), 
+            menues = document.getElementsByClassName("menu"),
+            i;
             
         for (i = 0; i < shortcuts.length; i++) {
             shortcuts.item(i).onclick = function() {
+                TinyWebtexDialog.closeMenues();
                 TinyWebtexDialog.insertAtCursor(this.title);
                 TinyWebtexDialog.update();            
+                return false;
             };          
+        }
+        for (i = 0; i < menues.length; i++) {
+            menues.item(i).onclick = function() {
+                var el = document.getElementById(this.value);
+                if (el.style.display == "block") {
+                    TinyWebtexDialog.closeMenues();
+                } else {
+                    TinyWebtexDialog.closeMenues();
+                    el.style.display = "block";
+                }
+
+                return false;
+            };
         }
     },
 

@@ -66,10 +66,16 @@ td.twStatus #counter {
 .twShortcuts #help {
     float: right;
 }
-.twSymbols, .twExpressions {
+.menuPane {
     display: none;
+    z-index: 3;
+    position: absolute;
+    top: 100px;
+    left: 8px;
+    background-color: #ddd;
+    border: 1px solid gray;
 }
-.twSymbols div {
+#twSymbols div {
     background-image: url(../img/sprite.png);
     background-repeat: no-repeat;
     background-size: 480px 24px;
@@ -77,14 +83,15 @@ td.twStatus #counter {
     height: 24px;
     border: 1px solid gray;
 }
-.twSymbols div#sqrtx {
+#twSymbols div#sqrtx {
     background-position: 0 0;
 }
-.twSymbols div#sqrtxy {
+#twSymbols div#sqrtxy {
     background-position: -24px 0;
 }
-.twSymbols div:hover {
-    border: 2px solid gray;
+#twSymbols div:hover {
+    border: solid 1px #000;
+    background-color: #ccc;
 }
 .error {
     color: red;

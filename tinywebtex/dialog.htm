@@ -35,12 +35,11 @@
             <option value="8">9</option>
             <option value="9">10</option>
         </select>
+        <button class="menu" value="twSymbols">{#tinywebtex_dlg.symbols}</button>
+        <button class="menu" value="twExpressions">{#tinywebtex_dlg.expressions}</button>
         <a id="help" href="http://en.wikipedia.org/wiki/Help:Displaying_a_formula#Functions.2C_symbols.2C_special_characters" target="_blank">{#tinywebtex_dlg.help}</a>
     </div>
-	<div class="mceActionPanel">
-		<input type="button" id="insert" name="insert" value="{#tinywebtex_dlg.done}" onclick="TinyWebtexDialog.done();" />
-	</div>
-    <div class="twSymbols">
+    <div class="menuPane" id="twSymbols">
         <table>
             <tr>
                 <td><div class="shortcut" id="sqrtx" title="\sqrt{x}"></div></td>
@@ -51,7 +50,7 @@
             </tr>
         </table>        
     </div>
-    <div class="twExpressions">
+    <div class="menuPane" id="twExpressions">
         <table>
             <tr>
                 <td><div class="shortcut" id="" title=""></div></td>
@@ -62,6 +61,9 @@
             </tr>
         </table>
     </div>
+	<div class="mceActionPanel">
+		<input type="button" id="insert" name="insert" value="{#tinywebtex_dlg.done}" onclick="TinyWebtexDialog.done();" />
+	</div>
 	<input type="hidden" id="uuid" name="uuid" value=""/>
 </form>
 
