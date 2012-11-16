@@ -6,6 +6,15 @@
  * WebTex is free software: you can redistribute it and/or modify
  * it under the terms of a MIT style license which is included in 
  * the software.
+ * 
+ * Images handled by this plugin have these additional requirements on top
+ * of the WebTex API documentation.
+ * 
+ * 1. The D parameter in the URL is assumed to have a 1 digit argument 0-9 only.
+ * 2. The tex parameter is assumed to be the last parameter.
+ * 3. An existing image to edit is assumed to have an "longdesc" attribute
+ *    containing a random string uniquely identifying the image on the page,
+ *    but will handle most common use cases when it does not exist.
  */
 
 tinyMCEPopup.requireLangPack();
@@ -87,7 +96,7 @@ var TinyWebtexDialog = {
 
     /*
      * Send an asynchronous call to WebTex backend service for image,
-     * will update the editor if successfull, indicate error states
+     * will update the editor if successful, indicate error states
      * otherwise.
      */
     callWebTex : function(img) {
@@ -119,7 +128,7 @@ var TinyWebtexDialog = {
     
     
     /*
-     * Updates the editor with the new image, used as callback from callWebTex.
+     * Updates the URL length counter.
      */
     updateCounter : function(img) {
         var c = document.getElementById("counter"), 
@@ -136,7 +145,7 @@ var TinyWebtexDialog = {
     
     
     /*
-     * Updates the editor with the new image, used as callback from callWebTex.
+     * Updates the editor with the given image.
      */
     updateEditor : function(img) {
         var f = document.forms[0],
@@ -155,6 +164,9 @@ var TinyWebtexDialog = {
     },
 
     
+    /*
+     * Indicates error state from WebTex service in UI.
+     */
     isOk : function(isOk, str) {
         var e = document.getElementById("error");
         if (isOk) {
@@ -175,6 +187,9 @@ var TinyWebtexDialog = {
     },
 
 
+    /*
+     * Indicates whether there is ongoing fetch activity in UI or not.
+     */
     inProgress : function(inProgress) {
         var e = document.getElementById("error");
 
@@ -219,6 +234,7 @@ var TinyWebtexDialog = {
         TinyWebtexDialog.callWebTex(img);
     },
     
+    
     insertAtCursor : function(str) {
         var f = document.forms[0],
             el = f.tex,
@@ -238,6 +254,7 @@ var TinyWebtexDialog = {
             range.select();
         }
     },
+
 
     /*
      * Callback for the done button in dialog. 
