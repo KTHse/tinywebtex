@@ -14,6 +14,10 @@ would with any other TinyMCE plugin, and add the `tinywebtex` button
 to the toolbar. See the TinyMCE customization documentation for
 details.
 
+To get the base-lining functionality of WebTex into TinyMCE you need to add
+the contents of the webtex.css style sheet from the WebTex package into
+the style sheet loaded as content_css in tinyMCE.init.
+
 The source-files (*_src.css and *_src.js) are included in the package and can be
 used for debugging purposes. However, without modification only the minimized 
 versions of these files are used and the source versions can be deleted.
