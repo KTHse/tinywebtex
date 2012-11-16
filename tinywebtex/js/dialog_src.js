@@ -250,6 +250,12 @@ var TinyWebtexDialog = {
             return;
         }
 
+        if (old.length > 0 &&
+            tex == TinyWebtexDialog.getTex(old[0]) && 
+            s == TinyWebtexDialog.getSize(old[0])) {
+            return;
+        }
+
         img = ed.dom.create('img', {
             'src' : "{0}/WebTex?D={1}&tex={2}".format(TinyWebtexDialog.url, s, encodeURIComponent(tex)),
             'alt' : 'tex:' + tex,
