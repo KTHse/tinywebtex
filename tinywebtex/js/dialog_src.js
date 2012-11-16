@@ -235,19 +235,21 @@ var TinyWebtexDialog = {
     },
     
     
+    /*
+     * Inserts string at cursor in tex buffer.
+     */
     insertAtCursor : function(str) {
-        var f = document.forms[0],
-            el = f.tex,
-            val = el.value, 
-            endIndex, 
+        var tex = document.forms[0].tex,
+            end,
             range;
-        if (typeof el.selectionStart != "undefined" && typeof el.selectionEnd != "undefined") {
-            endIndex = el.selectionEnd;
-            el.value = val.slice(0, endIndex) + str + val.slice(endIndex);
-            el.selectionStart = el.selectionEnd = endIndex + str.length;
+
+        if (typeof tex.selectionStart != "undefined" && typeof tex.selectionEnd != "undefined") {
+            end = tex.selectionEnd;
+            tex.value = tex.value.slice(0, end) + str + tex.value.slice(end);
+            tex.selectionStart = tex.selectionEnd = end + str.length;
         } else if (typeof document.selection != "undefined" && typeof document.selection.createRange != "undefined") {
             // IE <= 8.
-            el.focus();
+            tex.focus();
             range = document.selection.createRange();
             range.collapse(false);
             range.text = str;
