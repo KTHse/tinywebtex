@@ -70,7 +70,7 @@ td.twStatus #counter {
     display: none;
     z-index: 3;
     position: absolute;
-    top: 100px;
+    top: 20px;
     left: 8px;
     background-color: #ddd;
     border: 1px solid gray;
@@ -78,17 +78,163 @@ td.twStatus #counter {
 #twSymbols div {
     background-image: url(../img/sprite.png);
     background-repeat: no-repeat;
-    background-size: 480px 24px;
+    background-size: 1200px 24px;
     width: 24px;
     height: 24px;
     border: 1px solid gray;
 }
-#twSymbols div#sqrtx {
+#twSymbols div#alpha {
     background-position: 0 0;
 }
-#twSymbols div#sqrtxy {
+#twSymbols div#approx {
     background-position: -24px 0;
 }
+#twSymbols div#beta {
+    background-position: -48px 0;
+}
+#twSymbols div#cos {
+    background-position: -72px 0;
+}
+#twSymbols div#ddelta {
+    background-position: -96px 0;
+}
+#twSymbols div#delta {
+    background-position: -120px 0;
+}
+#twSymbols div#epsilon {
+    background-position: -144px 0;
+}
+#twSymbols div#gamma {
+    background-position: -168px 0;
+}
+#twSymbols div#geq {
+    background-position: -192px 0;
+}
+#twSymbols div#ggamma {
+    background-position: -216px 0;
+}
+#twSymbols div#iint {
+    background-position: -240px 0;
+}
+#twSymbols div#in {
+    background-position: -264px 0;
+}
+#twSymbols div#int {
+    background-position: -288px 0;
+}
+#twSymbols div#lleftarrow {
+    background-position: -312px 0;
+}
+#twSymbols div#leftrightarrow {
+    background-position: -336px 0;
+}
+#twSymbols div#leq {
+    background-position: -360px 0;
+}
+#twSymbols div#lg {
+    background-position: -384px 0;
+}
+#twSymbols div#ln {
+    background-position: -408px 0;
+}
+#twSymbols div#log {
+    background-position: -432px 0;
+}
+#twSymbols div#leftarrow {
+    background-position: -456px 0;
+}
+#twSymbols div#lleftrightarrow {
+    background-position: -480px 0;
+}
+#twSymbols div#logn {
+    background-position: -504px 0;
+}
+#twSymbols div#mu {
+    background-position: -528px 0;
+}
+#twSymbols div#nabla {
+    background-position: -552px 0;
+}
+#twSymbols div#neq {
+    background-position: -576px 0;
+}
+#twSymbols div#notin {
+    background-position: -600px 0;
+}
+#twSymbols div#oint {
+    background-position: -624px 0;
+}
+#twSymbols div#omega {
+    background-position: -648px 0;
+}
+#twSymbols div#over {
+    background-position: -672px 0;
+}
+#twSymbols div#phi {
+    background-position: -696px 0;
+}
+#twSymbols div#pi {
+    background-position: -720px 0;
+}
+#twSymbols div#pm {
+    background-position: -744px 0;
+}
+#twSymbols div#prod {
+    background-position: -768px 0;
+}
+#twSymbols div#psi {
+    background-position: -792px 0;
+}
+#twSymbols div#rightarrow {
+    background-position: -816px 0;
+}
+#twSymbols div#rrightarrow {
+    background-position: -840px 0;
+}
+
+#twSymbols div#simeq {
+    background-position: -864px 0;
+}
+#twSymbols div#sin {
+    background-position: -888px 0;
+}
+#twSymbols div#sqrtnx {
+    background-position: -912px 0;
+}
+#twSymbols div#sqrtx {
+    background-position: -936px 0;
+}
+#twSymbols div#subset {
+    background-position: -960px 0;
+}
+#twSymbols div#subseteq {
+    background-position: -984px 0;
+}
+#twSymbols div#sum {
+    background-position: -1008px 0;
+}
+#twSymbols div#supset {
+    background-position: -1032px 0;
+}
+#twSymbols div#supseteq {
+    background-position: -1056px 0;
+}
+#twSymbols div#tan {
+    background-position: -1080px 0;
+}
+#twSymbols div#times {
+    background-position: -1104px 0;
+}
+#twSymbols div#wings {
+    background-position: -1128px 0;
+}
+#twSymbols div#xsuby {
+    background-position: -1152px 0;
+}
+#twSymbols div#xtopy {
+    background-position: -1176px 0;
+}
+
 #twSymbols div:hover {
     border: solid 1px #000;
     background-color: #ccc;
