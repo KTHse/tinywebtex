@@ -50,6 +50,7 @@ var TinyWebtexDialog = {
     url : null,
     size : null,
     max : null,
+    timer : null,
 
     /*
      * Set up the window and populate data from selection in editor if any.
@@ -295,7 +296,7 @@ var TinyWebtexDialog = {
 
     
     closeMenues: function() {
-        var menues = document.getElementsByClassName("menuPane"),
+        var menues = document.getElementsByClassName("twMenuPane"),
             i;
             
         for (i = 0; i < menues.length; i++) {
@@ -305,12 +306,21 @@ var TinyWebtexDialog = {
 
 
     initShortcuts : function() {
-        var shortcuts = document.getElementsByClassName("shortcut"), 
-            menues = document.getElementsByClassName("menu"),
+        var entries = document.getElementsByClassName("twMenuEntry"), 
+            menues = document.getElementsByClassName("twMenu"),
+            panes = document.getElementsByClassName("twMenuPane"),
             i;
             
-        for (i = 0; i < shortcuts.length; i++) {
-            shortcuts.item(i).onclick = function() {
+        for (i = 0; i < panes.length; i++) {
+            panes.item(i).onmouseout = function() {
+                TinyWebtexDialog.timer = setTimeout(TinyWebtexDialog.closeMenues, 250);
+            };
+            panes.item(i).onmouseover = function() {
+                clearTimeout(TinyWebtexDialog.timer);
+            };
+        }
+        for (i = 0; i < entries.length; i++) {
+            entries.item(i).onclick = function() {
                 TinyWebtexDialog.closeMenues();
                 TinyWebtexDialog.insertAtCursor(this.title);
                 TinyWebtexDialog.update();            
@@ -319,7 +329,7 @@ var TinyWebtexDialog = {
         }
         for (i = 0; i < menues.length; i++) {
             menues.item(i).onclick = function() {
-                var el = document.getElementById(this.value);
+                var el = document.getElementById(this.getAttribute('href').substr(1));
                 if (el.style.display == "block") {
                     TinyWebtexDialog.closeMenues();
                 } else {

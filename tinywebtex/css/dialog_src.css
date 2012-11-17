@@ -13,9 +13,26 @@ table.twInput {
     width: 100%;
     border-collapse: collapse;
 }
+.twInput th {
+    border: 1px solid gray;
+    border-bottom: none;
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+}
+.twInput a {
+    padding-left: 2px;
+    padding-right: 5px;
+    padding-bottom: 3px;
+}
+.twInput th #help {
+    padding-right: 2px;
+    float: right;
+}
 td.twTex {
     background-color: #fff;
     border: 1px solid gray;
+    border-top: none;
     margin: 0;
     padding: 0;
     border-collapse: collapse;
@@ -59,23 +76,21 @@ td.twStatus #error {
 td.twStatus #counter {
     float: right;
 }
-.twShortcuts {
+.twControls {
     padding: 5px 0;
     margin-bottom: 10px;
 }
-.twShortcuts #help {
-    float: right;
-}
-.menuPane {
+.twMenuPane {
     display: none;
     z-index: 3;
     position: absolute;
-    top: 20px;
+    top: 46px;
     left: 8px;
-    background-color: #ddd;
+    background-color: #eee;
     border: 1px solid gray;
+    border-top: none;
 }
-#twSymbols div {
+#twSymbols div, #twExpressions div {
     background-image: url(../img/sprite.png);
     background-repeat: no-repeat;
     background-size: 1200px 24px;
@@ -83,161 +98,160 @@ td.twStatus #counter {
     height: 24px;
     border: 1px solid gray;
 }
-#twSymbols div#alpha {
+#twSymbols div:hover, #twExpressions div:hover {
+    border-color: #000;
+    background-color: #ccc;
+}
+div#alpha {
     background-position: 0 0;
 }
-#twSymbols div#approx {
+div#approx {
     background-position: -24px 0;
 }
-#twSymbols div#beta {
+div#beta {
     background-position: -48px 0;
 }
-#twSymbols div#cos {
+div#cos {
     background-position: -72px 0;
 }
-#twSymbols div#ddelta {
+div#ddelta {
     background-position: -96px 0;
 }
-#twSymbols div#delta {
+div#delta {
     background-position: -120px 0;
 }
-#twSymbols div#epsilon {
+div#epsilon {
     background-position: -144px 0;
 }
-#twSymbols div#gamma {
+div#gamma {
     background-position: -168px 0;
 }
-#twSymbols div#geq {
+div#geq {
     background-position: -192px 0;
 }
-#twSymbols div#ggamma {
+div#ggamma {
     background-position: -216px 0;
 }
-#twSymbols div#iint {
+div#iint {
     background-position: -240px 0;
 }
-#twSymbols div#in {
+div#in {
     background-position: -264px 0;
 }
-#twSymbols div#int {
+div#int {
     background-position: -288px 0;
 }
-#twSymbols div#lleftarrow {
+div#lleftarrow {
     background-position: -312px 0;
 }
-#twSymbols div#leftrightarrow {
+div#leftrightarrow {
     background-position: -336px 0;
 }
-#twSymbols div#leq {
+div#leq {
     background-position: -360px 0;
 }
-#twSymbols div#lg {
+div#lg {
     background-position: -384px 0;
 }
-#twSymbols div#ln {
+div#ln {
     background-position: -408px 0;
 }
-#twSymbols div#log {
+div#log {
     background-position: -432px 0;
 }
-#twSymbols div#leftarrow {
+div#leftarrow {
     background-position: -456px 0;
 }
-#twSymbols div#lleftrightarrow {
+div#lleftrightarrow {
     background-position: -480px 0;
 }
-#twSymbols div#logn {
+div#logn {
     background-position: -504px 0;
 }
-#twSymbols div#mu {
+div#mu {
     background-position: -528px 0;
 }
-#twSymbols div#nabla {
+div#nabla {
     background-position: -552px 0;
 }
-#twSymbols div#neq {
+div#neq {
     background-position: -576px 0;
 }
-#twSymbols div#notin {
+div#notin {
     background-position: -600px 0;
 }
-#twSymbols div#oint {
+div#oint {
     background-position: -624px 0;
 }
-#twSymbols div#omega {
+div#omega {
     background-position: -648px 0;
 }
-#twSymbols div#over {
+div#over {
     background-position: -672px 0;
 }
-#twSymbols div#phi {
+div#phi {
     background-position: -696px 0;
 }
-#twSymbols div#pi {
+div#pi {
     background-position: -720px 0;
 }
-#twSymbols div#pm {
+div#pm {
     background-position: -744px 0;
 }
-#twSymbols div#prod {
+div#prod {
     background-position: -768px 0;
 }
-#twSymbols div#psi {
+div#psi {
     background-position: -792px 0;
 }
-#twSymbols div#rightarrow {
+div#rightarrow {
     background-position: -816px 0;
 }
-#twSymbols div#rrightarrow {
+div#rrightarrow {
     background-position: -840px 0;
 }
 
-#twSymbols div#simeq {
+div#simeq {
     background-position: -864px 0;
 }
-#twSymbols div#sin {
+div#sin {
     background-position: -888px 0;
 }
-#twSymbols div#sqrtnx {
+div#sqrtnx {
     background-position: -912px 0;
 }
-#twSymbols div#sqrtx {
+div#sqrtx {
     background-position: -936px 0;
 }
-#twSymbols div#subset {
+div#subset {
     background-position: -960px 0;
 }
-#twSymbols div#subseteq {
+div#subseteq {
     background-position: -984px 0;
 }
-#twSymbols div#sum {
+div#sum {
     background-position: -1008px 0;
 }
-#twSymbols div#supset {
+div#supset {
     background-position: -1032px 0;
 }
-#twSymbols div#supseteq {
+div#supseteq {
     background-position: -1056px 0;
 }
-#twSymbols div#tan {
+div#tan {
     background-position: -1080px 0;
 }
-#twSymbols div#times {
+div#times {
     background-position: -1104px 0;
 }
-#twSymbols div#wings {
+div#curls {
     background-position: -1128px 0;
 }
-#twSymbols div#xsuby {
+div#xsuby {
     background-position: -1152px 0;
 }
-#twSymbols div#xtopy {
+div#xtopy {
     background-position: -1176px 0;
-}
-
-#twSymbols div:hover {
-    border: solid 1px #000;
-    background-color: #ccc;
 }
 .error {
     color: red;
