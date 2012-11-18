@@ -57,32 +57,33 @@ var TinyWebtexDialog = {
      * Set up the window and populate data from selection in editor if any.
      */
     init : function() {
-        var f = document.forms[0],
+        var tw = this,
+            f = document.forms[0],
             ed = tinyMCEPopup.editor,
             div = ed.dom.create('div', {}, ed.selection.getContent()),
             img;
 
-        TinyWebtexDialog.url = tinyMCEPopup.getWindowArg('webtex_url');
-        TinyWebtexDialog.size = tinyMCEPopup.getWindowArg('default_size');
-        TinyWebtexDialog.max = tinyMCEPopup.getWindowArg('max_length');
-        f.tex.onkeyup = TinyWebtexDialog.update;
-        f.size.onchange = TinyWebtexDialog.update;
+        tw.url = tinyMCEPopup.getWindowArg('webtex_url');
+        tw.size = tinyMCEPopup.getWindowArg('default_size');
+        tw.max = tinyMCEPopup.getWindowArg('max_length');
+        f.tex.onkeyup = f.size.onchange = f.style.onchange = tw.update;
 
         if (!div.childNodes.length) {
-            f.uuid.value = TinyWebtexDialog.randomId();
+            f.uuid.value = tw.randomId();
         } else {
             img = div.childNodes.item(0);
             if ((img.nodeName == 'IMG') && img.className.match("webtex")) {
-                f.tex.value = TinyWebtexDialog.getTex(img);
-                f.size.value = TinyWebtexDialog.getSize(img);
-                f.uuid.value = TinyWebtexDialog.getUuid(img);
+                f.tex.value = tw.getTex(img);
+                f.size.value = tw.getSize(img);
+                f.uuid.value = tw.getUuid(img);
+                f.style.value = tw.isDisplayStyle(f.tex.value) ? "display" : "inline" ;
             } else if (img.nodeType == Node.TEXT_NODE) {
-                f.uuid.value = TinyWebtexDialog.randomId();
+                f.uuid.value = tw.randomId();
                 f.tex.value = img.textContent;
             }
         }
-        TinyWebtexDialog.initShortcuts();            
-        TinyWebtexDialog.update();            
+        tw.initShortcuts();            
+        tw.update();            
         f.tex.focus();
     },
     
@@ -127,32 +128,35 @@ var TinyWebtexDialog = {
      * otherwise.
      */
     callWebTex : function(img) {
-        var xmlhttp = new XMLHttpRequest();
-        if (TinyWebtexDialog.xmlhttp != null) {
-            TinyWebtexDialog.xmlhttp.abort();
+        var xmlhttp = new XMLHttpRequest(),
+            tw = this;
+            
+        if (tw.xmlhttp != null) {
+            tw.xmlhttp.abort();
         }
+
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState < 4) {
-                TinyWebtexDialog.inProgress(true);
+                tw.inProgress(true);
             } else if (xmlhttp.readyState == 4) {
-                TinyWebtexDialog.inProgress(false);
+                tw.inProgress(false);
                 if (xmlhttp.status == 200 || xmlhttp.status == 304) {
                     img.webtex = {
                         log : decodeURIComponent(xmlhttp.getResponseHeader("X-MathImage-log")),
                         tex : decodeURIComponent(xmlhttp.getResponseHeader("X-MathImage-tex")),
                         depth : xmlhttp.getResponseHeader("X-MathImage-depth")
                     };
-                    TinyWebtexDialog.updateCounter(img);            
+                    tw.updateCounter(img);            
                     if (img.webtex.log == "OK") {
-                        TinyWebtexDialog.isOk(true);            
-                        TinyWebtexDialog.updateEditor(img);
+                        tw.isOk(true);            
+                        tw.updateEditor(img);
                     } else {
-                        TinyWebtexDialog.isOk(false, img.webtex.log);            
+                        tw.isOk(false, img.webtex.log);            
                     }
                 }
             }
         };
-        TinyWebtexDialog.xmlhttp = xmlhttp;
+        tw.xmlhttp = xmlhttp;
         xmlhttp.open("GET", img.src, true);
         xmlhttp.send();
     },
@@ -163,7 +167,7 @@ var TinyWebtexDialog = {
      */
     updateCounter : function(img) {
         var c = document.getElementById("counter"), 
-            l = TinyWebtexDialog.max;
+            l = this.max;
         
         if (img) {
             l -= img.src.split(/[\?&]tex=/g)[1].length;
@@ -233,22 +237,43 @@ var TinyWebtexDialog = {
     },
 
 
+    isDisplayStyle : function(tex) {
+        return tex.match(/^\s*\\displaystyle.*/g);
+    },
+    
+    
+    setStyle : function(tex, style) {
+        var tw = TinyWebtexDialog;
+
+        if (style == "display" && ! tw.isDisplayStyle(tex)) {
+            return "\\displaystyle " + tex;
+        } else if (style == "inline" && tw.isDisplayStyle(tex)) {
+            return tex.replace(/\s*\\displaystyle\s*/g, "");
+        }
+        return tex;
+    },
+
+
     /*
      * Callback for keyup events in tex field of dialog. Will call for
      * a new image from WebTex if we believe that the contents have 
      * changed.
      */
     update : function() {
-        var f = document.forms[0],
+        var tw = TinyWebtexDialog,
+            f = document.forms[0],
             ed = tinyMCEPopup.editor,
-            tex = f.tex.value.trim(),
-            s = f.size.value,
-            old = ed.dom.select('img[longdesc={0}]'.format(f.uuid.value));
-
+            size = f.size.value,
+            old = ed.dom.select('img[longdesc={0}]'.format(f.uuid.value)),
+            tex;
+            
+        f.tex.value = tw.setStyle(f.tex.value, f.style.value),
+        tex = f.tex.value.trim();
+        
         if (tex == "") {
             // Expression is empty, reset status.
-            TinyWebtexDialog.updateCounter();
-            TinyWebtexDialog.isOk(true);
+            tw.updateCounter();
+            tw.isOk(true);
 
             if (old.length > 0) {
                 // Remove any old image.
@@ -259,16 +284,16 @@ var TinyWebtexDialog = {
         }
 
         if (old.length > 0 &&
-            tex == TinyWebtexDialog.getTex(old[0]) && 
-            s == TinyWebtexDialog.getSize(old[0])) {
+            tex == tw.getTex(old[0]) && 
+            size == tw.getSize(old[0])) {
             // No changes compared to old image.
             return;
         }
 
         // New or modified image.
-        TinyWebtexDialog.callWebTex(
+        tw.callWebTex(
             ed.dom.create('img', {
-                'src' : "{0}/WebTex?D={1}&tex={2}".format(TinyWebtexDialog.url, s, encodeURIComponent(tex)),
+                'src' : "{0}/WebTex?D={1}&tex={2}".format(tw.url, size, encodeURIComponent(tex)),
                 'alt' : 'tex:' + tex,
                 'class' : 'webtex',
                 'longdesc' : f.uuid.value
@@ -311,24 +336,26 @@ var TinyWebtexDialog = {
 
 
     initShortcuts : function() {
-        var entries = document.getElementsByClassName("twMenuEntry"), 
+        var tw = this,
+            entries = document.getElementsByClassName("twMenuEntry"), 
             menues = document.getElementsByClassName("twMenu"),
             panes = document.getElementsByClassName("twMenuPane"),
             i;
             
         for (i = 0; i < panes.length; i++) {
             panes.item(i).onmouseout = function() {
-                TinyWebtexDialog.timer = setTimeout(TinyWebtexDialog.closeMenues, 250);
+                tw.timer = setTimeout(tw.closeMenues, 150);
             };
             panes.item(i).onmouseover = function() {
-                clearTimeout(TinyWebtexDialog.timer);
+                clearTimeout(tw.timer);
             };
         }
         for (i = 0; i < entries.length; i++) {
             entries.item(i).onclick = function() {
-                TinyWebtexDialog.closeMenues();
-                TinyWebtexDialog.insertAtCursor(this.title);
-                TinyWebtexDialog.update();            
+                tw.closeMenues();
+                tw.insertAtCursor(this.title);
+                tw.update(); 
+                document.forms[0].tex.focus();           
                 return false;
             };          
         }
@@ -336,12 +363,11 @@ var TinyWebtexDialog = {
             menues.item(i).onclick = function() {
                 var el = document.getElementById(this.getAttribute('href').substr(1));
                 if (el.style.display == "block") {
-                    TinyWebtexDialog.closeMenues();
+                    tw.closeMenues();
                 } else {
-                    TinyWebtexDialog.closeMenues();
+                    tw.closeMenues();
                     el.style.display = "block";
                 }
-
                 return false;
             };
         }

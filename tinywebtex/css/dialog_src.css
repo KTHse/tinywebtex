@@ -80,6 +80,9 @@ td.twStatus #counter {
     padding: 5px 0;
     margin-bottom: 10px;
 }
+.twControls select {
+    margin-right: 8px;
+}
 .twMenuPane {
     display: none;
     z-index: 3;
