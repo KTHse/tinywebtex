@@ -3,6 +3,12 @@ Tiny WebTex
 
 A plugin for the open source WYSIWYG JavaScript editor TinyMCE (http://www.tinymce.com/).
 
+## Supported browsers
+
+Tiny WebTex is as of this writing tested on.
+
+Mac OS X: Safari 6, Chrome 23, Firefox 16 and Opera 12.
+
 ## Install
 
 Fetch a compiled release from the download directory or build from source,
