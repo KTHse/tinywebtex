@@ -51,6 +51,7 @@ var TinyWebtexDialog = {
     size : null,
     max : null,
     timer : null,
+    xmlhttp : null,
 
     /*
      * Set up the window and populate data from selection in editor if any.
@@ -127,6 +128,9 @@ var TinyWebtexDialog = {
      */
     callWebTex : function(img) {
         var xmlhttp = new XMLHttpRequest();
+        if (TinyWebtexDialog.xmlhttp != null) {
+            TinyWebtexDialog.xmlhttp.abort();
+        }
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState < 4) {
                 TinyWebtexDialog.inProgress(true);
@@ -148,6 +152,7 @@ var TinyWebtexDialog = {
                 }
             }
         };
+        TinyWebtexDialog.xmlhttp = xmlhttp;
         xmlhttp.open("GET", img.src, true);
         xmlhttp.send();
     },
