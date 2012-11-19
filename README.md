@@ -15,6 +15,10 @@ Tiny WebTex is as of this writing tested on:
 
 Mac OS X: Safari 6, Chrome 23, Firefox 16 and Opera 12.
 
+Windows 7: Chrome 23 and Firefox 16. Internet Explorer 9 with the 
+exception of the possibility to select text and have it replaced
+with a WebTex image which is possible in the other browsers.
+
 ## Install
 
 ### Prerequisites
