@@ -49,7 +49,9 @@ cross-site-scripting (XSS) issues.
 There are a number of options for proxying the WebTex application into
 the same namespace as the site using TinyMCE to avoid XSS if you use Apache httpd,
 like mod_jk or mod_proxy, see the Apache documentation for details. There should
-be similar possibilities for other web servers.
+be similar possibilities for other web servers. Another option in some circumstances
+may be to set the property document.domain which is supported in all modern browsers, 
+https://developer.mozilla.org/en-US/docs/DOM/document.domain.
 
 `WEBTEX_SIZE = 1` The default WebTex image size (the 'D' parameter to the service).
 
