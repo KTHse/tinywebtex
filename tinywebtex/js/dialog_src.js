@@ -60,7 +60,7 @@ var TinyWebtexDialog = {
         var tw = this,
             f = document.forms[0],
             ed = tinyMCEPopup.editor,
-            div = ed.dom.create('div', {}, ed.selection.getContent()),
+            div = ed.dom.create('div', {}, ed.dom.get("tw_stupid_ie_workaround").innerHTML),
             img;
 
         tw.url = tinyMCEPopup.getWindowArg('webtex_url');

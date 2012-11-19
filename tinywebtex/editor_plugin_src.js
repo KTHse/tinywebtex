@@ -26,9 +26,8 @@
             ed.addCommand('mceTinyWebtex', function() {
                 if (ed.dom.getAttrib(ed.selection.getNode(), 'class', '').indexOf('mceItem') != -1)
                     return;
-                if (! ed.selection.getContent()) {
-                    ed.selection.setContent('<span id="tw_stupid_ie_workaround"></span>');
-                }
+
+                ed.selection.setContent('<span id="tw_stupid_ie_workaround">' + ed.selection.getContent() + '</span>');
 
                 ed.windowManager.open({
                     file : url + '/dialog.htm',
