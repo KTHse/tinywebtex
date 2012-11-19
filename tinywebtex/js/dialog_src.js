@@ -196,13 +196,14 @@ var TinyWebtexDialog = {
         }
                 
         ed.undoManager.add();
-        if (old) {
-            ed.dom.replace(img, old);
-        } else if (ed.dom.get('tw_stupid_ie_workaround')) {
+        if (ed.dom.get('tw_stupid_ie_workaround')) {
             ed.dom.replace(img, ed.dom.get('tw_stupid_ie_workaround'));
+        } else if (old) {
+            ed.dom.replace(img, old);
         } else {
             ed.selection.setNode(img);
         }
+
         ed.execCommand('mceRepaint', false);
     },
 
@@ -387,10 +388,8 @@ var TinyWebtexDialog = {
      * Callback for the done button in dialog. 
      */
     done : function() {
-        var ed = tinyMCEPopup.editor; 
-
-        ed.dom.remove(ed.dom.get('tw_stupid_ie_workaround'));
         tinyMCEPopup.close();
+        ed.dom.remove(ed.dom.get("tw_ie_stupid_workaround"));
     }
 };
 
