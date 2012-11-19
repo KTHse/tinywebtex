@@ -184,9 +184,7 @@ var TinyWebtexDialog = {
      * Updates the editor with the given image.
      */
     updateEditor : function(img) {
-        var f = document.forms[0],
-            ed = tinyMCEPopup.editor,
-            old = ed.dom.get(f.uuid.value);
+        var ed = tinyMCEPopup.editor;
 
         img.className = "webtex dp" + img.webtex.depth.replace("-", "_");
         
@@ -196,12 +194,8 @@ var TinyWebtexDialog = {
         }
                 
         ed.undoManager.add();
-        if (old) {
-            ed.dom.replace(img, old);
-        } else {
-            ed.selection.setNode(img);
-        }
-        ed.execCommand('mceRepaint', false);
+        tinyMCE.execCommand('mceInsertContent', false, img.outerHTML);
+//        ed.execCommand('mceRepaint', false);
     },
 
     
