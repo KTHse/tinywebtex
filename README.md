@@ -1,15 +1,28 @@
 Tiny WebTex
 -----------
 
-A plugin for the open source WYSIWYG JavaScript editor TinyMCE (http://www.tinymce.com/).
+A plugin to edit and render (LaTeX) mathematic expressions with WebTex 
+for the open source WYSIWYG JavaScript editor TinyMCE (http://www.tinymce.com/).
+
+## Where to get it
+
+Tinywebtex is as of this writing published at 
+http://github.com/fjollberg/tinywebtex
 
 ## Supported browsers
 
-Tiny WebTex is as of this writing tested on.
+Tiny WebTex is as of this writing tested on:
 
 Mac OS X: Safari 6, Chrome 23, Firefox 16 and Opera 12.
 
 ## Install
+
+### Prerequisites
+
+You need a WebTex backend service version 1.3 or later, see
+http://github.com/fjollberg/webtex
+
+### Installation instructions
 
 Fetch a compiled release from the download directory or build from source,
 see below. Unzip the package and copy the tinywebtex directory to the
