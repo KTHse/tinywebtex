@@ -388,8 +388,8 @@ var TinyWebtexDialog = {
      * Callback for the done button in dialog. 
      */
     done : function() {
-        tinyMCEPopup.close();
         ed.dom.remove(ed.dom.get("tw_ie_stupid_workaround"));
+        tinyMCEPopup.close();
     }
 };
 
