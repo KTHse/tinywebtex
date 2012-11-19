@@ -199,10 +199,9 @@ var TinyWebtexDialog = {
         if (old) {
             ed.dom.replace(img, old);
         } else {
-//            tinyMCE.execCommand('mceInsertContent', false, img.outerHTML);
-            ed.setContent(img.innerHTML);
+            ed.dom.replace(img, ed.dom.get('tw_stupid_ie_workaround'));
         }
-        tinyMCE.execCommand('mceRepaint', false);
+        ed.execCommand('mceRepaint', false);
     },
 
     
@@ -210,7 +209,8 @@ var TinyWebtexDialog = {
      * Indicates error state from WebTex service in UI.
      */
     isOk : function(isOk, str) {
-        var e = document.getElementById("error");
+        var e = document.getElementById("error");
+
         if (isOk) {
             e.className = "";
             e.textContent = "";
@@ -385,6 +385,9 @@ var TinyWebtexDialog = {
      * Callback for the done button in dialog. 
      */
     done : function() {
+        var ed = tinyMCEPopup.editor; 
+
+        ed.dom.remove(ed.dom.get('tw_stupid_ie_workaround'));
         tinyMCEPopup.close();
     }
 };
