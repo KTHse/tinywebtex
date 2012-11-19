@@ -198,8 +198,10 @@ var TinyWebtexDialog = {
         ed.undoManager.add();
         if (old) {
             ed.dom.replace(img, old);
-        } else {
+        } else if (ed.dom.get('tw_stupid_ie_workaround')) {
             ed.dom.replace(img, ed.dom.get('tw_stupid_ie_workaround'));
+        } else {
+            ed.selection.setNode(img);
         }
         ed.execCommand('mceRepaint', false);
     },
