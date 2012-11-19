@@ -38,7 +38,7 @@
 					// Default WebTex image size.
                     default_size : typeof WEBTEX_SIZE === "undefined" ?  1 : WEBTEX_SIZE,
                     // Max Length of WebTex expression before warning.
-                    max_length : typeof WEBTEX_MAX_LEN === "undefined" ? 2000 : WEBTEX_MAX_LEN,
+                    max_length : typeof WEBTEX_MAX_LEN === "undefined" ? 1900 : WEBTEX_MAX_LEN,
                     // Base URL of WebTex service.
                     webtex_url : typeof WEBTEX_URL === "undefined" ? '/webtex' : WEBTEX_URL
 				});
