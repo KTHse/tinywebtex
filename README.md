@@ -13,13 +13,13 @@ http://github.com/fjollberg/tinywebtex
 
 Tiny WebTex is as of this writing known to work reasonably well on:
 
-Mac OS X Mountain Lion: Safari 6, Chrome 23, Firefox 16 and Opera 12 works fine.
+Mac OS X Mountain Lion: Safari 6, Chrome 23, Firefox 16 and Opera 12.
 
-Windows 7: Chrome 23 and Firefox 16 works fine. Internet Explorer 9 almost (See Note 1)
+Windows 7: Chrome 23, Firefox 16 and Internet Explorer 9.
 
-Linux Fedora 17: Chrome 23 and Firefox 16 works fine.
+Linux Fedora 17: Chrome 23 and Firefox 16.
 
-iOS 6: Safari 6 works fine. Dolphin 6 almost (See Note 1)
+iOS 6: Safari 6 works. Dolphin 6 almost (See Note 1)
 
 Notes:
 
