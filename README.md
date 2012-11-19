@@ -9,15 +9,20 @@ for the open source WYSIWYG JavaScript editor TinyMCE (http://www.tinymce.com/).
 Tinywebtex is as of this writing published at 
 http://github.com/fjollberg/tinywebtex
 
-## Supported browsers
+## Browser compatibility
 
-Tiny WebTex is as of this writing tested on:
+Tiny WebTex is as of this writing known to work reasonably well on:
 
-Mac OS X: Safari 6, Chrome 23, Firefox 16 and Opera 12.
+Mac OS X Mountain Lion: Safari 6, Chrome 23, Firefox 16 and Opera 12.
 
-Windows 7: Chrome 23 and Firefox 16. Internet Explorer 9 with the 
-exception of the possibility to select text and have it replaced
-with a WebTex image which is possible in the other browsers.
+Windows 7: Chrome 23 and Firefox 16. Internet Explorer 9*
+
+Linux Fedora 17: Chrome 23 and Firefox 16.
+
+iOS 6: Safari 6 and Dolphin 6*
+
+*) Selecting text and then activating tinywebtex will not insert the
+text in the popup and replace it with the WebTex representation.
 
 ## Install
 
