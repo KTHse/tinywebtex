@@ -302,10 +302,10 @@ var TinyWebtexDialog = {
         // New or modified image.
         tw.callWebTex(
             ed.dom.create('img', {
+                id : f.uuid.value,
                 'src' : "{0}/WebTex?D={1}&tex={2}".format(tw.url, size, encodeURIComponent(tex)),
                 'alt' : 'tex:' + tex,
-                'class' : 'webtex',
-                'id' : f.uuid.value
+                'class' : 'webtex'
             })
         );
     },
