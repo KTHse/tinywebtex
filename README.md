@@ -13,15 +13,17 @@ http://github.com/fjollberg/tinywebtex
 
 Tiny WebTex is as of this writing known to work reasonably well on:
 
-Mac OS X Mountain Lion: Safari 6, Chrome 23, Firefox 16 and Opera 12.
+Mac OS X Mountain Lion: Safari 6, Chrome 23, Firefox 16 and Opera 12 works fine.
 
-Windows 7: Chrome 23 and Firefox 16. Internet Explorer 9*
+Windows 7: Chrome 23 and Firefox 16 works fine. Internet Explorer 9 almost (See Note 1)
 
-Linux Fedora 17: Chrome 23 and Firefox 16.
+Linux Fedora 17: Chrome 23 and Firefox 16 works fine.
 
-iOS 6: Safari 6 and Dolphin 6*
+iOS 6: Safari 6 works fine. Dolphin 6 almost (See Note 1)
 
-*) Selecting text and then activating tinywebtex will not insert the
+Notes:
+
+(1) Selecting text and then activating tinywebtex will not insert the
 text in the popup and replace it with the WebTex representation.
 
 ## Install
