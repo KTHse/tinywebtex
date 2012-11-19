@@ -63,6 +63,14 @@ var TinyWebtexDialog = {
             div = ed.dom.create('div', {}, ed.dom.get("tw_stupid_ie_workaround").innerHTML),
             img;
 
+        // Make sure we clean up on exit.
+        ed.windowManager.onClose.add(function () {
+            var garbage = ed.dom.get('tw_stupid_ie_workaround');
+            if (garbage) {
+                ed.dom.setOuterHTML(garbage, garbage.innerHTML);
+            }
+        });
+
         tw.url = tinyMCEPopup.getWindowArg('webtex_url');
         tw.size = tinyMCEPopup.getWindowArg('default_size');
         tw.max = tinyMCEPopup.getWindowArg('max_length');
@@ -388,9 +396,9 @@ var TinyWebtexDialog = {
      * Callback for the done button in dialog. 
      */
     done : function() {
-        ed.dom.remove(ed.dom.get("tw_ie_stupid_workaround"));
         tinyMCEPopup.close();
     }
 };
+
 
 tinyMCEPopup.onInit.add(TinyWebtexDialog.init, TinyWebtexDialog);
