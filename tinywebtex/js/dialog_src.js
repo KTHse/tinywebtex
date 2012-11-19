@@ -203,6 +203,7 @@ var TinyWebtexDialog = {
         } else {
             ed.selection.setNode(img);
         }
+        ed.selection.select(img);
         ed.execCommand('mceRepaint', false);
     },
 
