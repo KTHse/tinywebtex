@@ -60,7 +60,7 @@ var TinyWebtexDialog = {
         var tw = this,
             f = document.forms[0],
             ed = tinyMCEPopup.editor,
-            div = ed.dom.create('div', {}, ed.selection.getNode().innerHTML),
+            div = ed.dom.create('div', {}, ed.selection.getContent()),
             img;
 
         tw.url = tinyMCEPopup.getWindowArg('webtex_url');
@@ -387,12 +387,9 @@ var TinyWebtexDialog = {
      * Callback for the done button in dialog. 
      */
     done : function() {
-        var ed = tinyMCEPopup.editor,
-            garbage = ed.dom.get('tw_stupid_ie_workaround'); 
+        var ed = tinyMCEPopup.editor; 
 
-        if (garbage) {
-            ed.dom.replace(garbage, garbage.innerHTML);
-        }
+        ed.dom.remove(ed.dom.get('tw_stupid_ie_workaround'));
         tinyMCEPopup.close();
     }
 };
