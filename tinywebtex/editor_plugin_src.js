@@ -30,7 +30,7 @@
 				ed.windowManager.open({
 					file : url + '/dialog.htm',
 					width : 400 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
-					height : 225 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
+					height : 240 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
 					inline : 1
 				}, {
                     // Plugin absolute URL.
@@ -38,7 +38,7 @@
 					// Default WebTex image size.
                     default_size : typeof WEBTEX_SIZE === "undefined" ?  1 : WEBTEX_SIZE,
                     // Max Length of WebTex expression before warning.
-                    max_length : typeof WEBTEX_MAX_LEN === "undefined" ? 2000 : WEBTEX_MAX_LEN,
+                    max_length : typeof WEBTEX_MAX_LEN === "undefined" ? 1900 : WEBTEX_MAX_LEN,
                     // Base URL of WebTex service.
                     webtex_url : typeof WEBTEX_URL === "undefined" ? '/webtex' : WEBTEX_URL
 				});
@@ -52,7 +52,7 @@
 			});
 
 			// ctrl+e = cmd+e on a mac
-            ed.addShortcut('ctrl+e', "Equation editor", 'mceTinyWebtex');
+            ed.addShortcut('ctrl+e', 'tinywebtex.desc', 'mceTinyWebtex');
                         
             // Add a node change handler, selects the button in the UI when a image is selected
             ed.onNodeChange.add(function(ed, cm, n, co) {
