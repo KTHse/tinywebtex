@@ -1,6 +1,6 @@
 Release notes
 -------------
 
-## Tiny WebTex 0.0.1
+## Tiny WebTex 0.1.0
 
-* Initial release.
+* Initial alfa release.
