@@ -64,14 +64,6 @@ var TinyWebtexDialog = {
             div,
             img;
 
-        // Make sure we clean up on exit.
-        ed.windowManager.onClose.add(function () {
-            var garbage = ed.dom.get(tw.span);
-            if (garbage) {
-                ed.dom.setOuterHTML(garbage, garbage.innerHTML);
-            }
-        });
-
         tw.url = tinyMCEPopup.getWindowArg('webtex_url');
         tw.size = tinyMCEPopup.getWindowArg('default_size');
         tw.max = tinyMCEPopup.getWindowArg('max_length');

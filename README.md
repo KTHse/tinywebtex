@@ -90,9 +90,9 @@ easy access to. Others may work or not. Only major versions are listed.
 
 Tiny WebTex is as of this writing known to work on:
 
-Mac OS X Mountain Lion: Safari 6, Chrome 23, Firefox 16 and Opera 12.
+Mac OS X Mountain Lion: Chrome 23, Firefox 16, Opera 12 and Safari 6.
 
-Windows 7: Chrome 23, Firefox 16 and Internet Explorer 9.
+Windows 7: Chrome 23, Firefox 16, Internet Explorer 8 and 9.
 
 Linux Fedora 17: Chrome 23 and Firefox 16.
 
@@ -100,7 +100,7 @@ iOS 6: Safari 6 and Dolphin 6.
 
 ### Browsers known not to work
 
-Firefox 3.6, background image scaling issues.
+Firefox 3.6, at least background image scaling issues.
 
 
 ## Copyrights and license information

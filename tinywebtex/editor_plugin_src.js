@@ -23,7 +23,7 @@
          */
         init : function(ed, url) {
             var marker = "tinywebtex_insertion";
-            
+
             // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
             ed.addCommand('mceTinyWebtex', function() {
                 if (ed.dom.getAttrib(ed.selection.getNode(), 'class', '').indexOf('mceItem') != -1)
@@ -31,6 +31,14 @@
 
                 ed.selection.setContent('<span id="'+ marker + '">' + ed.selection.getContent() + '</span>');
 
+                // Make sure we clean up on exit.
+                ed.windowManager.onClose.add(function () {
+                    var garbage = ed.dom.get(marker);
+                    if (garbage) {
+                        ed.dom.setOuterHTML(garbage, garbage.innerHTML);
+                    }
+                });
+            
                 ed.windowManager.open({
                     file : url + '/dialog.htm',
                     width : 400 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
