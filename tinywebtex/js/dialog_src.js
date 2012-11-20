@@ -177,6 +177,7 @@ var TinyWebtexDialog = {
                 
         ed.undoManager.add();
         ed.dom.setHTML(span, img.outerHTML);
+        ed.execCommand('mceRepaint', false);
     },
 
     
