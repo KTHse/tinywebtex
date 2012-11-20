@@ -1,5 +1,5 @@
 <project name="tinywebtex" default="build">
-  <property name="project.version" value="0.0.0"/>
+  <property name="project.version" value="0.1.0"/>
   
   <tstamp>
     <format property="project.builddate" pattern="yyyy-MM-dd"/>
@@ -31,7 +31,8 @@
 
   <target name="build" depends="minify" description="Build the distribution">
     <zip destfile="${ant.project.name}-${project.version}.zip">
-      <fileset dir="tinywebtex" includes="*"/>
+        <zipfileset prefix="${ant.project.name}-${project.version}" dir="." includes="tinywebtex/**/*"/>
+        <zipfileset prefix="${ant.project.name}-${project.version}" dir="." includes="*.md"/>
     </zip>
   </target>
 
@@ -40,6 +41,7 @@
     <delete>
       <fileset dir="." includes="**/*~" defaultexcludes="false"/>
       <fileset dir="." includes="*.zip"/>
+      <fileset dir="." includes="**/*.js" excludes="**/*_src.js"/>
     </delete>
   </target>
 </project>

@@ -4,18 +4,126 @@
 	<title>{#tinywebtex_dlg.title}</title>
 	<script type="text/javascript" src="../../tiny_mce_popup.js?v={tinymce_version}"></script>
 	<script type="text/javascript" src="js/dialog.js?v={tinymce_version}"></script>
+	<link rel="stylesheet" href="css/dialog.css"/>
 </head>
 <body>
 
 <form onsubmit="TinyWebtexDialog.insert();return false;" action="#">
-	<p>Here is a example dialog.</p>
-	<p>Selected text: <input id="someval" name="someval" type="text" class="text" /></p>
-	<p>Custom arg: <input id="somearg" name="somearg" type="text" class="text" /></p>
-
+    <div class="title">{#tinywebtex_dlg.editExpression}</div>
+    <table class="twInput" role="presentation">
+        <thead>
+            <tr>
+                <th class="twtwMenuEntrys">
+                    <a class="twMenu" href="#twSymbols">{#tinywebtex_dlg.symbols}</a>
+                    <a class="twMenu" href="#twExpressions">{#tinywebtex_dlg.expressions}</a>
+                    <a id="help" href="http://en.wikipedia.org/wiki/Help:Displaying_a_formula#Functions.2C_symbols.2C_special_characters" target="_blank">{#tinywebtex_dlg.help}</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="twTex"><textarea id="tex" name="tex"></textarea></td>
+            </tr>
+            <tr>
+                <td class="twStatus">
+                    <span id="error"></span>
+                    <span id="counter" title="{#tinywebtex_dlg.charsLeft}"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="twControls">
+        <label for="twStyle">{#tinywebtex_dlg.style}</label>
+        <select name="twStyle" id="style">
+            <option value="inline" selected="selected">{#tinywebtex_dlg.inline}</option>
+            <option value="display">{#tinywebtex_dlg.display}</option>
+        </select>
+        <label for="twSize">{#tinywebtex_dlg.size}</label>
+        <select name="twSize" id="size">
+            <option value="0">1</option>
+            <option value="1" selected="selected">2</option>
+            <option value="2">3</option>
+            <option value="3">4</option>
+            <option value="4">5</option>
+            <option value="5">6</option>
+            <option value="6">7</option>
+            <option value="7">8</option>
+            <option value="8">9</option>
+            <option value="9">10</option>
+        </select>
+    </div>
+    <div class="twMenuPane" id="twSymbols">
+        <table>
+            <tr>
+                <td><div class="twMenuEntry" id="alpha" title="\alpha "></div></td>
+                <td><div class="twMenuEntry" id="beta" title="\beta "></div></td>
+                <td><div class="twMenuEntry" id="ggamma" title="\Gamma "></div></td>
+                <td><div class="twMenuEntry" id="gamma" title="\gamma "></div></td>
+                <td><div class="twMenuEntry" id="ddelta" title="\Delta "></div></td>
+                <td><div class="twMenuEntry" id="delta" title="\delta "></div></td>
+                <td><div class="twMenuEntry" id="epsilon" title="\epsilon "></div></td>
+                <td><div class="twMenuEntry" id="mu" title="\mu "></div></td>
+                <td><div class="twMenuEntry" id="nabla" title="\nabla "></div></td>
+                <td><div class="twMenuEntry" id="omega" title="\omega "></div></td>
+            </tr>
+            <tr>
+                <td><div class="twMenuEntry" id="phi" title="\phi "></div></td>
+                <td><div class="twMenuEntry" id="pi" title="\pi "></div></td>
+                <td><div class="twMenuEntry" id="psi" title="\psi "></div></td>
+                <td><div class="twMenuEntry" id="times" title="\times "></div></td>
+                <td><div class="twMenuEntry" id="pm" title="\pm "></div></td>
+                <td><div class="twMenuEntry" id="leq" title="\leq "></div></td>
+                <td><div class="twMenuEntry" id="geq" title="\geq "></div></td>
+                <td><div class="twMenuEntry" id="neq" title="\neq "></div></td>
+                <td><div class="twMenuEntry" id="approx" title="\approx "></div></td>
+                <td><div class="twMenuEntry" id="simeq" title="\simeq "></div></td>
+            </tr>
+            <tr>
+                <td><div class="twMenuEntry" id="leftarrow" title="\leftarrow "></div></td>
+                <td><div class="twMenuEntry" id="leftrightarrow" title="\leftrightarrow "></div></td>
+                <td><div class="twMenuEntry" id="rightarrow" title="\rightarrow "></div></td>
+                <td><div class="twMenuEntry" id="lleftarrow" title="\Leftarrow "></div></td>
+                <td><div class="twMenuEntry" id="lleftrightarrow" title="\Leftrightarrow "></div></td>
+                <td><div class="twMenuEntry" id="rrightarrow" title="\Rightarrow "></div></td>
+                <td><div class="twMenuEntry" id="lg" title="\lg "></div></td>
+                <td><div class="twMenuEntry" id="ln" title="\ln "></div></td>
+                <td><div class="twMenuEntry" id="log" title="\log "></div></td>
+                <td><div class="twMenuEntry" id="logn" title="\log_{n}"></div></td>
+            </tr>
+        </table>        
+    </div>
+    <div class="twMenuPane" id="twExpressions">
+        <table>
+            <tr>
+                <td><div class="twMenuEntry" id="int" title="\int_{y}^{z} x\,dx"></div></td>
+                <td><div class="twMenuEntry" id="iint" title="\iint "></div></td>
+                <td><div class="twMenuEntry" id="oint" title="\oint_{y}^{z} x\,dx"></div></td>
+                <td><div class="twMenuEntry" id="sum" title="\sum_{i}^{j}"></div></td>
+                <td><div class="twMenuEntry" id="prod" title="\prod_{i}^{j}"></div></td>
+                <td><div class="twMenuEntry" id="xsuby" title="x_{y}"></div></td>
+                <td><div class="twMenuEntry" id="xtopy" title="x^{y}"></div></td>
+                <td><div class="twMenuEntry" id="over" title="{x \over y}"></div></td>
+                <td><div class="twMenuEntry" id="sqrtnx" title="\sqrt[n]{x}"></div></td>
+                <td><div class="twMenuEntry" id="sqrtx" title="\sqrt{x}"></div></td>
+            </tr>
+            <tr>
+                <td><div class="twMenuEntry" id="curls" title="\left\{ \right\}"></div></td>
+                <td><div class="twMenuEntry" id="sin" title="\sin "></div></td>
+                <td><div class="twMenuEntry" id="cos" title="\cos "></div></td>
+                <td><div class="twMenuEntry" id="tan" title="\tan "></div></td>
+                <td><div class="twMenuEntry" id="in" title="\in "></div></td>
+                <td><div class="twMenuEntry" id="notin" title="\notin "></div></td>
+                <td><div class="twMenuEntry" id="subset" title="\subset "></div></td>
+                <td><div class="twMenuEntry" id="subseteq" title="\subseteq "></div></td>
+                <td><div class="twMenuEntry" id="supset" title="\supset "></div></td>
+                <td><div class="twMenuEntry" id="supseteq" title="\supseteq "></div></td>
+            </tr>
+        </table>
+    </div>
 	<div class="mceActionPanel">
-		<input type="button" id="insert" name="insert" value="{#insert}" onclick="TinyWebtexDialog.insert();" />
-		<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+		<input type="button" id="insert" name="insert" title="{#tinywebtex_dlg.doneTitle}" value="{#tinywebtex_dlg.done}" onclick="TinyWebtexDialog.done();" />
 	</div>
+	<input type="hidden" id="uuid" name="uuid" value=""/>
 </form>
 
 </body>
