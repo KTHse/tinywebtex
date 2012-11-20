@@ -22,12 +22,14 @@
          * @param {string} url Absolute URL to where the plugin is located.
          */
         init : function(ed, url) {
+            var marker = "tinywebtex_insertion";
+            
             // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
             ed.addCommand('mceTinyWebtex', function() {
                 if (ed.dom.getAttrib(ed.selection.getNode(), 'class', '').indexOf('mceItem') != -1)
                     return;
 
-                ed.selection.setContent('<span id="tw_stupid_ie_workaround">' + ed.selection.getContent() + '</span>');
+                ed.selection.setContent('<span id="'+ marker + '">' + ed.selection.getContent() + '</span>');
 
                 ed.windowManager.open({
                     file : url + '/dialog.htm',
@@ -35,6 +37,7 @@
                     height : 240 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
                     inline : 1
                 }, {
+                    marker : marker,
                     // Plugin absolute URL.
                     plugin_url : url,
                     // Default WebTex image size.

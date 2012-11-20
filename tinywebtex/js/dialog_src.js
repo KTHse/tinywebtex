@@ -52,6 +52,7 @@ var TinyWebtexDialog = {
     max : null,
     timer : null,
     xmlhttp : null,
+    span: null,
 
     /*
      * Set up the window and populate data from selection in editor if any.
@@ -60,12 +61,12 @@ var TinyWebtexDialog = {
         var tw = this,
             f = document.forms[0],
             ed = tinyMCEPopup.editor,
-            div = ed.dom.create('div', {}, ed.dom.get("tw_stupid_ie_workaround").innerHTML),
+            div,
             img;
 
         // Make sure we clean up on exit.
         ed.windowManager.onClose.add(function () {
-            var garbage = ed.dom.get('tw_stupid_ie_workaround');
+            var garbage = ed.dom.get(tw.span);
             if (garbage) {
                 ed.dom.setOuterHTML(garbage, garbage.innerHTML);
             }
@@ -74,19 +75,17 @@ var TinyWebtexDialog = {
         tw.url = tinyMCEPopup.getWindowArg('webtex_url');
         tw.size = tinyMCEPopup.getWindowArg('default_size');
         tw.max = tinyMCEPopup.getWindowArg('max_length');
+        tw.span = tinyMCEPopup.getWindowArg('marker');
         f.tex.onkeyup = f.size.onchange = f.style.onchange = tw.update;
 
-        if (!div.childNodes.length) {
-            f.uuid.value = tw.randomId();
-        } else {
+        div = ed.dom.create('div', {}, ed.dom.get(tw.span).firstChild);
+        if (div.childNodes.length) {
             img = div.childNodes.item(0);
             if ((img.nodeName == 'IMG') && img.className.match("webtex")) {
                 f.tex.value = tw.getTex(img);
                 f.size.value = tw.getSize(img);
-                f.uuid.value = img.id;
                 f.style.value = tw.isDisplayStyle(f.tex.value) ? "display" : "inline" ;
             } else if (img.nodeType == Node.TEXT_NODE) {
-                f.uuid.value = tw.randomId();
                 f.tex.value = img.textContent;
             }
         }
@@ -96,17 +95,6 @@ var TinyWebtexDialog = {
     },
     
     
-    randomId: function() {
-        var CHARS = "0123456789abcdef",
-            id = "uuid-", i;
-            
-        for (i = 0; i < 32; i++) {
-            id += CHARS[Math.floor(Math.random() * CHARS.length)];
-        }
-        return id;
-    },
-    
-
     getSize: function(img) {
         var s = img.src.split(/[\?&]D=/g)[1].substr(0,1);
         if (s) {
@@ -121,14 +109,6 @@ var TinyWebtexDialog = {
     },
     
     
-    getUuid: function(img) {
-        if (img.id) {
-            return img.id;
-        }    
-        return TinyWebtexDialog.randomId();
-    },
-
-
     /*
      * Send an asynchronous call to WebTex backend service for image,
      * will update the editor if successful, indicate error states
@@ -192,9 +172,9 @@ var TinyWebtexDialog = {
      * Updates the editor with the given image.
      */
     updateEditor : function(img) {
-        var f = document.forms[0],
-            ed = tinyMCEPopup.editor,
-            old = ed.dom.get(f.uuid.value);
+        var ed = tinyMCEPopup.editor,
+            tw = this,
+            span = ed.dom.get(tw.span);
 
         img.className = "webtex dp" + img.webtex.depth.replace("-", "_");
         
@@ -204,15 +184,7 @@ var TinyWebtexDialog = {
         }
                 
         ed.undoManager.add();
-        if (ed.dom.get('tw_stupid_ie_workaround')) {
-            ed.dom.replace(img, ed.dom.get('tw_stupid_ie_workaround'));
-        } else if (old) {
-            ed.dom.replace(img, old);
-        } else {
-            ed.selection.setNode(img);
-        }
-
-        ed.execCommand('mceRepaint', false);
+        ed.dom.setHTML(span, img.outerHTML);
     },
 
     
@@ -282,7 +254,7 @@ var TinyWebtexDialog = {
             f = document.forms[0],
             ed = tinyMCEPopup.editor,
             size = f.size.value,
-            old = ed.dom.get(f.uuid.value),
+            span = ed.dom.get(tw.span),
             tex;
             
         f.tex.value = tw.setStyle(f.tex.value, f.style.value),
@@ -292,18 +264,13 @@ var TinyWebtexDialog = {
             // Expression is empty, reset status.
             tw.updateCounter();
             tw.isOk(true);
-
-            if (old) {
-                // Remove any old image.
-                ed.dom.remove(old);
-                ed.execCommand('mceRepaint', false);
-            }
+            ed.dom.setHTML(span, "");
             return;
         }
 
-        if (old &&
-            tex == tw.getTex(old) && 
-            size == tw.getSize(old)) {
+        if (span.firstChild &&
+            tex == tw.getTex(span.firstChild) && 
+            size == tw.getSize(span.firstChild)) {
             // No changes compared to old image.
             return;
         }
@@ -311,7 +278,6 @@ var TinyWebtexDialog = {
         // New or modified image.
         tw.callWebTex(
             ed.dom.create('img', {
-                id : f.uuid.value,
                 'src' : "{0}/WebTex?D={1}&tex={2}".format(tw.url, size, encodeURIComponent(tex)),
                 'alt' : 'tex:' + tex,
                 'class' : 'webtex'
