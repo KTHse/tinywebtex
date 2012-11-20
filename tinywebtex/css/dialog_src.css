@@ -20,6 +20,19 @@ table.twInput {
     font-style: normal;
     font-weight: normal;
 }
+.twInput th ul {
+    list-style: none;
+    position: relative;
+    display: inline-table;
+    margin: 0;
+    padding: 0;
+}
+.twInput th ul:after {
+    content: ""; clear: both; display: block;
+}
+.twInput ul li {
+    float: left;
+}
 .twInput a {
     padding-left: 2px;
     padding-right: 5px;
@@ -86,14 +99,22 @@ td.twStatus #counter {
 .twMenuPane {
     display: none;
     z-index: 3;
-    position: absolute;
+/*    position: absolute;
     top: 46px;
-    left: 8px;
+    left: 8px;*/
+    position: absolute;
+    top: 130%;
+/*    top: 100%;*/
+/*    left: 5%;*/
     background-color: #eee;
     border: 1px solid gray;
     border-top: none;
 }
-#twSymbols div, #twExpressions div {
+#twSymbols div, 
+#twOperators div,
+#twFunctions div,
+#twMisc div,
+#twArrowsEtc div {
     background-image: url(../img/sprite.png);
     background-repeat: no-repeat;
     background-size: 1200px 24px;
@@ -101,7 +122,11 @@ td.twStatus #counter {
     height: 24px;
     border: 1px solid gray;
 }
-#twSymbols div:hover, #twExpressions div:hover {
+#twSymbols div:hover, 
+#twOperators div:hover,
+#twFunctions div:hover,
+#twMisc div:hover,
+#twArrowsEtc div:hover {
     border-color: #000;
     background-color: #ccc;
 }
