@@ -9,22 +9,6 @@ for the open source WYSIWYG JavaScript editor TinyMCE (http://www.tinymce.com/).
 Tinywebtex is as of this writing published at 
 http://github.com/fjollberg/tinywebtex
 
-## Browser compatibility
-
-Tiny WebTex is as of this writing known to work reasonably well on:
-
-Mac OS X Mountain Lion: Safari 6, Chrome 23, Firefox 16 and Opera 12 works fine.
-
-Windows 7: Chrome 23 and Firefox 16 works fine. Internet Explorer 9 almost (See Note 1)
-
-Linux Fedora 17: Chrome 23 and Firefox 16 works fine.
-
-iOS 6: Safari 6 works fine. Dolphin 6 almost (See Note 1)
-
-Notes:
-
-(1) Selecting text and then activating tinywebtex will not insert the
-text in the popup and replace it with the WebTex representation.
 
 ## Install
 
@@ -95,6 +79,29 @@ may also come into play.
 To "build" from source you need Java and Apache ant and simply running
 `ant` in the project root will build the zip-file. Building minimizes
 CSS and JavaScript sources.
+
+
+## Browser compatibility
+
+Browsers are as they are and I've only tested the browsers I have reasonably
+easy access to. Others may work or not. Only major versions are listed.
+
+### Browsers known to work
+
+Tiny WebTex is as of this writing known to work on:
+
+Mac OS X Mountain Lion: Chrome 23, Firefox 16, Opera 12 and Safari 6.
+
+Windows 7: Chrome 23, Firefox 16, Internet Explorer 8 and 9.
+
+Linux Fedora 17: Chrome 23 and Firefox 16.
+
+iOS 6: Safari 6 and Dolphin 6.
+
+### Browsers known not to work
+
+Firefox 3.6, at least background image scaling issues.
+
 
 ## Copyrights and license information
 
