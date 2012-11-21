@@ -105,11 +105,7 @@ td.twStatus #counter {
     border: 1px solid gray;
     border-top: none;
 }
-#twSymbols div, 
-#twOperators div,
-#twFunctions div,
-#twMisc div,
-#twArrowsEtc div {
+.twMenuPane div {
     background-image: url(../img/sprite.png);
     background-repeat: no-repeat;
     background-size: 360px 192px;
@@ -118,11 +114,10 @@ td.twStatus #counter {
     height: 24px;
     border: 1px solid #ccc;
 }
-#twSymbols div:hover, 
-#twOperators div:hover,
-#twFunctions div:hover,
-#twMisc div:hover,
-#twArrowsEtc div:hover {
+.twMenuPane div.long {
+    width: 54px;
+}
+.twMenuPane div:hover {
     border-color: #ccc;
     background-color: #ddd;
 }
@@ -136,13 +131,13 @@ div#approx {
     background-position: -48px 0;
 }
 div#arccos {
-    background-position: 0 0;
+    background-position: -70px 0;
 }
 div#arcsin {
-    background-position: 0 0;
+    background-position: -117px 0;
 }
 div#arctan {
-    background-position: 0 0;
+    background-position: -165px 0;
 }
 div#beta {
     background-position: -216px 0;
@@ -332,6 +327,11 @@ div#sigma {
 div#sim {
     background-position: -168px -96px;
 }
+/*
+div#simeq {
+    background-position: -192px -96px;
+}
+*/
 div#sin {
     background-position: -216px -96px;
 }
