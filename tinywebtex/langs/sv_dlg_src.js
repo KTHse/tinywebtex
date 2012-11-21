@@ -15,15 +15,15 @@ tinyMCE.addI18n('sv.tinywebtex_dlg',{
     done : 'Klar',
     doneTitle : 'St&auml;ng f&ouml;nstret (esc)',
     editExpression : 'Redigera matematiskt uttryck (TeX)',
-    functions : 'Funktioner',
+    functions : 'Funk.',
     help : 'Hj&auml;lp',
     inline : 'Inline',
-    misc : 'Diverse',
+    misc : 'Div.',
     operators : 'Operatorer',
     size : 'Storlek',
     sizeTitle : 'Styr storleken p&aring; den genererade bilden.',
     style : 'Utseende',
     styleTitle: 'Byter mellan "display" och "inline" stil p&aring; bilden.',
-    symbols : 'Symboler',
+    symbols : 'Symb.',
     title : 'Ekvationseditor'
 });
