@@ -46,7 +46,7 @@ is used, se example below which includes the default values for these options.
 <script type="text/javascript">
     WEBTEX_URL = '/webtex'; // Base URL of the WebTex service
     WEBTEX_SIZE = 1;        // Default WebTex image size ('D' parameter).
-    WEBTEX_MAX_LEN = 2000;  // Max length of encoded TeX expression before warning.
+    WEBTEX_MAX_LEN = 1900;  // Max length of encoded TeX expression before warning.
 </script>
 ```
 
@@ -63,7 +63,7 @@ https://developer.mozilla.org/en-US/docs/DOM/document.domain.
 
 `WEBTEX_SIZE = 1` The default WebTex image size (the 'D' parameter to the service).
 
-`WEBTEX_MAX_LEN = 2000` The max length of the encoded TeX expression before the
+`WEBTEX_MAX_LEN = 1900` The max length of the encoded TeX expression before the
 interface warns the user that the expression is too long. The limit is not 
 enforced however, but the interface warns the user that the expression is too long.
 
