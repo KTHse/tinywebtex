@@ -14,7 +14,7 @@ Tinywebtex is as of this writing published at http://github.com/KTHse/tinywebtex
 
 ### Prerequisites
 
-You need a WebTex backend service version 1.3 or later, see
+You need a WebTex backend service version 1.3.2 or later, see
 http://github.com/fjollberg/webtex
 
 ### Installation instructions
@@ -109,7 +109,7 @@ Firefox 3.6, at least background image scaling issues.
 
 ## Copyrights and license information
 
-Tiny WebTex is released and licensed by a MIT [license](./LICENCE.md).
+Tiny WebTex is released and licensed by a MIT [license](LICENCE.md).
 In other words, do as you please with it, but don't think you can hold us
 liable for any damage caused to or by you if you use it.
 
