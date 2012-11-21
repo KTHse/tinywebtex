@@ -15,7 +15,7 @@ tinyMCE.addI18n('en.tinywebtex_dlg',{
     done : 'Done',
     doneTitle : 'Close window (esc)',
     editExpression : 'Edit mathematical expression (TeX)',
-    functions : 'Functions',
+    functions : 'Func.',
     help : 'Help',
     inline : 'Inline',
     misc : 'Misc.',
@@ -24,6 +24,6 @@ tinyMCE.addI18n('en.tinywebtex_dlg',{
     sizeTitle : 'Controls the size of the equation.',
     style : 'Style',
     styleTitle: 'Toggles between inline and display style format of the equation.',
-    symbols : 'Symbols',
+    symbols : 'Symb.',
     title : 'Equation Editor'
 });
