@@ -81,6 +81,16 @@ To "build" from source you need Java and Apache ant and simply running
 CSS and JavaScript sources.
 
 
+## Development
+
+This project uses git and git flow style branching. Hence, the master branch is the 
+stable release branch, and development is done on the development branch. For more 
+information about the branch model see http://nvie.com/posts/a-successful-git-branching-model/.
+For the `git flow` command line tool, see https://github.com/nvie/gitflow.
+
+Version numbering follows the [Semantic versioning](http://semver.org) approach.
+
+
 ## Browser compatibility
 
 Browsers are as they are and I've only tested the browsers I have reasonably
