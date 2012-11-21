@@ -113,6 +113,6 @@ Tiny WebTex is released and licensed by a MIT [license](LICENCE.md).
 In other words, do as you please with it, but don't think you can hold us
 liable for any damage caused to or by you if you use it.
 
-A copy of yuilibrary is included to minify JavaScript and CSS.
+A copy of yuicompressor is included to minify JavaScript and CSS.
 Copyright (C) 2012 Yahoo! Inc. All rights reserved.
 http://yuilibrary.com/license/
