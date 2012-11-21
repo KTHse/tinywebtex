@@ -24,6 +24,14 @@
         init : function(ed, url) {
             var marker = "tinywebtex_insertion";
 
+            // Register double click event handler.
+            ed.onDblClick.add(function(ed, evt) {
+                var t = evt.target;
+                if (t.nodeName == "IMG" && t.className.match(".*webtex.*")) {
+                    ed.execCommand('mceTinyWebtex', true);
+                }                
+            });
+            
             // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
             ed.addCommand('mceTinyWebtex', function() {
                 if (ed.dom.getAttrib(ed.selection.getNode(), 'class', '').indexOf('mceItem') != -1)

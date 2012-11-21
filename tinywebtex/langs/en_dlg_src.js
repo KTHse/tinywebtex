@@ -9,16 +9,21 @@
  */
 
 tinyMCE.addI18n('en.tinywebtex_dlg',{
+    arrowsetc : 'Arrows/Relations',
     charsLeft : 'Number of characters left before the image link becomes too long to show properly in some browsers.',
     display: 'Display',
     done : 'Done',
     doneTitle : 'Close window (esc)',
     editExpression : 'Edit mathematical expression (TeX)',
-    expressions : 'Expressions',
+    functions : 'Functions',
     help : 'Help',
     inline : 'Inline',
+    misc : 'Misc.',
+    operators : 'Operators',
     size : 'Size',
+    sizeTitle : 'Controls the size of the equation.',
     style : 'Style',
+    styleTitle: 'Toggles between inline and display style format of the equation.',
     symbols : 'Symbols',
     title : 'Equation Editor'
 });
