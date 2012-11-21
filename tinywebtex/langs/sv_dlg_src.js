@@ -21,7 +21,9 @@ tinyMCE.addI18n('sv.tinywebtex_dlg',{
     misc : 'Diverse',
     operators : 'Operatorer',
     size : 'Storlek',
+    sizeTitle : 'Styr storleken p&aring; den genererade bilden.',
     style : 'Utseende',
+    styleTitle: 'Byter mellan "display" och "inline" stil p&aring; bilden.',
     symbols : 'Symboler',
     title : 'Ekvationseditor'
 });

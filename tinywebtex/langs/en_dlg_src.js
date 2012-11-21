@@ -21,7 +21,9 @@ tinyMCE.addI18n('en.tinywebtex_dlg',{
     misc : 'Misc.',
     operators : 'Operators',
     size : 'Size',
+    sizeTitle : 'Controls the size of the equation.',
     style : 'Style',
+    styleTitle: 'Toggles between inline and display style format of the equation.',
     symbols : 'Symbols',
     title : 'Equation Editor'
 });
