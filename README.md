@@ -4,10 +4,10 @@ Tiny WebTex
 A plugin to edit and render (LaTeX) mathematic expressions with WebTex 
 for the open source WYSIWYG JavaScript editor TinyMCE (http://www.tinymce.com/).
 
+
 ## Where to get it
 
-Tinywebtex is as of this writing published at 
-http://github.com/fjollberg/tinywebtex
+Tinywebtex is as of this writing published at http://github.com/KTHse/tinywebtex
 
 
 ## Install
@@ -92,11 +92,15 @@ Tiny WebTex is as of this writing known to work on:
 
 Mac OS X Mountain Lion: Chrome 23, Firefox 16, Opera 12 and Safari 6.
 
-Windows 7: Chrome 23, Firefox 16, Internet Explorer 8 and 9.
+Windows 7: Chrome 23, Firefox 16 and Internet Explorer 9.
 
 Linux Fedora 17: Chrome 23 and Firefox 16.
 
 iOS 6: Safari 6 and Dolphin 6.
+
+Android: The tinywebtex plugin is known to work in the browser in
+Android 2.5.3 (HTC Sense 3.0) even if TinyMCE does not work completely.
+Later browsers as of Android 3 or something like that should work.
 
 ### Browsers known not to work
 
