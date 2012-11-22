@@ -27,7 +27,6 @@ var TinyWebtexDialog = {
     url : null,
     size : null,
     max : null,
-    timer : null,
     xmlhttp : null,
     span: null,
 
@@ -50,7 +49,7 @@ var TinyWebtexDialog = {
 	            $("#style").val(tw.isDisplayStyle($("#tex").val()) ? "display" : "inline");
         });
 
-        tw.initShortcuts();            
+        tw.initMenues();            
         tw.update();
         $("#tex").keyup(tw.update).focus();
         $("#size").change(tw.update);
@@ -68,7 +67,7 @@ var TinyWebtexDialog = {
     
     
     getTex: function(img) {
-        return img.alt.substr(4);
+        return $(img).attr("alt").trim().substr(4);
     },
     
     
@@ -177,18 +176,6 @@ var TinyWebtexDialog = {
     },
     
     
-    setStyle : function(tex, style) {
-        var tw = TinyWebtexDialog;
-
-        if (style == "display" && ! tw.isDisplayStyle(tex)) {
-            return "\\displaystyle " + tex;
-        } else if (style == "inline" && tw.isDisplayStyle(tex)) {
-            return tex.replace(/\s*\\displaystyle\s*/g, "");
-        }
-        return tex;
-    },
-
-
     /*
      * Callback for keyup events in tex field of dialog. Will call for
      * a new image from WebTex if we believe that the contents have 
@@ -198,12 +185,17 @@ var TinyWebtexDialog = {
         var tw = TinyWebtexDialog,
             ed = tinyMCEPopup.editor,
             span = ed.dom.get(tw.span),
-            f = document.forms[0],
             size = $("#size").val(),
-            tex;
+            tex = $("#tex").val(function(index, tex) {
+                var style = $("#style").val();
 
-        f.tex.value = tw.setStyle(f.tex.value, f.style.value),
-        tex = $.trim(f.tex.value);
+                if (style == "display" && ! tw.isDisplayStyle(tex)) {
+                    return "\\displaystyle " + tex;
+                } else if (style == "inline" && tw.isDisplayStyle(tex)) {
+                    return tex.replace(/\s*\\displaystyle\s*/g, "");
+                }
+                return tex;
+            }).val().trim();
         
         if (tex == "") {
             // Expression is empty, reset status.
@@ -231,40 +223,31 @@ var TinyWebtexDialog = {
     },
     
     
-    closeMenues: function() {
-    	$(".twMenuPane").each(function() {
-    		$(this).css('display', 'none');
-    	});
-    },
-
-
-    initShortcuts : function() {
+    initMenues : function() {
         var tw = this;
         
         $(".twMenuPane").each(function() {
             $(this).mouseout(function() {
-            	tw.timer = setTimeout(tw.closeMenues, 150);
+                var menu = this;
+            	menu.timer = setTimeout(function() {$(menu).hide();}, 150);
             }).mouseover(function() {
-            	clearTimeout(tw.timer);
+            	clearTimeout(this.timer);
             });
         });
         $(".twMenuEntry").each(function() {
         	$(this).click(function() {
         		$("#tex").insertAtCaret(this.title);
-                tw.closeMenues();
                 tw.update(); 
+                $(".twMenuPane").hide();
                 $("#tex").focus();
+                return false;
         	});
         });
         $(".twMenu").each(function() {
             $(this).click(function() {
-            	var el = $($(this).attr('href'));
-                if (el.css('display') == "block") {
-                    tw.closeMenues();
-                } else {
-                    tw.closeMenues();
-                	el.css('display', 'block');
-                }
+            	var menu = $(this).attr('href');
+            	$(".twMenuPane").not(menu).hide();
+            	$(menu).toggle();
                 return false;
             });      	
         });
