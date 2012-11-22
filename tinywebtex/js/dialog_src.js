@@ -110,7 +110,6 @@ var TinyWebtexDialog = {
             .error(function(d, s, xhr) {
                 tw.xmlhttp = null;
                 tw.inProgress(false);
-                tw.isOk(false, "! not found");            
             });
     },
     
@@ -119,16 +118,14 @@ var TinyWebtexDialog = {
      * Updates the URL length counter.
      */
     updateCounter : function(img) {
-        var c = document.getElementById("counter"), 
-            l = this.max;
+        var l = this.max;
         
         if (img) {
             l -= img.src.split(/[\?&]tex=/g)[1].length;
         }
-        c.textContent = l;
-        if (c.textContent < 0) {
-            c.className = "error";
-        }
+        $("#counter")
+            .text(l)
+            .toggleClass("error", (l < 0));
     },
     
     
@@ -137,18 +134,16 @@ var TinyWebtexDialog = {
      */
     updateEditor : function(img) {
         var ed = tinyMCEPopup.editor,
-            tw = this,
-            span = ed.dom.get(tw.span);
+            tw = this;
 
-        img.className = "webtex dp" + img.webtex.depth.replace("-", "_");
-        
-        if (img.webtex.width && img.webtex.height) {
-            img.width = img.webtex.width;
-            img.height = img.webtex.height;
-        }
-                
+        $(img)
+            .toggleClass("webtex", true)
+            .addClass("dp" + img.webtex.depth.replace("-", "_"))
+            .attr("width", img.webtex.width)
+            .attr("height", img.webtex.height);
+
         ed.undoManager.add();
-        ed.dom.setHTML(span, img.outerHTML);
+        ed.dom.setHTML(ed.dom.get(tw.span), img.outerHTML);
         ed.execCommand('mceRepaint', false);
     },
 
@@ -157,14 +152,12 @@ var TinyWebtexDialog = {
      * Indicates error state from WebTex service in UI.
      */
     isOk : function(isOk, str) {
-        var e = document.getElementById("error");
+        var e = $("#error")
+                    .text("")
+                    .toggleClass("alert", !isOk);
 
-        if (isOk) {
-            e.className = "";
-            e.textContent = "";
-        } else {
-            e.className = "alert";
-            e.textContent = str.substr(2).split(/.\Wl.[0-9]+\W/g)[0]
+        if (!isOk) {
+            $(e).text(str.substr(2).split(/.\Wl.[0-9]+\W/g)[0]);
         }
     },
 
@@ -173,14 +166,9 @@ var TinyWebtexDialog = {
      * Indicates whether there is ongoing fetch activity in UI or not.
      */
     inProgress : function(inProgress) {
-        var e = document.getElementById("error");
-
-        e.textContent = "";
-        if (inProgress) {
-            e.className = "working";
-        } else {
-            e.className = "";
-        }
+        $("#error")
+            .text("")
+            .toggleClass("working", inProgress);
     },
 
 
