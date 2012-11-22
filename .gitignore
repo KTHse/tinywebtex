@@ -2,6 +2,7 @@
 *.css
 !*_src.css
 *.js
+!jquery-*.min.js
 !*_src.js
 *~
 
