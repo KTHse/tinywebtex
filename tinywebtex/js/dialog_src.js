@@ -67,7 +67,7 @@ var TinyWebtexDialog = {
     
     
     getTex: function(img) {
-        return $(img).attr("alt").trim().substr(4);
+        return $.trim($(img).attr("alt").substr(4));
     },
     
     
@@ -186,7 +186,7 @@ var TinyWebtexDialog = {
             ed = tinyMCEPopup.editor,
             span = ed.dom.get(tw.span),
             size = $("#size").val(),
-            tex = $("#tex").val(function(index, tex) {
+            tex = $.trim($("#tex").val(function(index, tex) {
                 var style = $("#style").val();
 
                 if (style == "display" && ! tw.isDisplayStyle(tex)) {
@@ -195,7 +195,7 @@ var TinyWebtexDialog = {
                     return tex.replace(/\s*\\displaystyle\s*/g, "");
                 }
                 return tex;
-            }).val().trim();
+            }).val());
         
         if (tex == "") {
             // Expression is empty, reset status.
