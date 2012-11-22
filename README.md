@@ -103,9 +103,10 @@ Active development is currently primarily done on Chrome 23, Firefox 15, Safari 
 and Internet Explorer 9. Tiny WebTex is as of this writing generally based on more
 general testing believed to work on these browsers:
 
-* Opera >= 10
-* Firefox >= 11
 * Chrome >= 14
+* Firefox >= 11
+* Internet Explorer >= 8
+* Opera >= 10
 * Safari >= 4
 * Mobile browsers, like IOS Safari, Dolphin and the Android browser are 
   beleived to work in the extent they support TinyMCE.
