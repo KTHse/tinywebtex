@@ -1,15 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>{#tinywebtex_dlg.title}</title>
-	<script type="text/javascript" src="../../tiny_mce_popup.js?v={tinymce_version}"></script>
-	<script type="text/javascript" src="js/dialog.js?v={tinymce_version}"></script>
-	<link rel="stylesheet" href="css/dialog.css"/>
+    <title>{#tinywebtex_dlg.title}</title>
+    <script type="text/javascript" src="../../tiny_mce_popup.js?v={tinymce_version}"></script>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="js/jquery.insertAtCaret.js"></script>
+    <script type="text/javascript" src="js/dialog.js?v={tinymce_version}"></script>
+    <link rel="stylesheet" href="css/dialog.css"/>
 </head>
 <body>
 
+<div class="title">{#tinywebtex_dlg.editExpression}</div>
 <form onsubmit="TinyWebtexDialog.insert();return false;" action="#">
-    <div class="title">{#tinywebtex_dlg.editExpression}</div>
     <table class="twInput" role="presentation">
         <thead>
             <tr>
@@ -23,7 +25,7 @@
                                         <td><div class="twMenuEntry" id="expxy" title="\exp_{x}y "></div></td>
                                         <td><div class="twMenuEntry" id="log" title="\log "></div></td>
                                         <td><div class="twMenuEntry" id="ln" title="\ln "></div></td>
-                                        <td><div class="twMenuEntry" id="abs" title="\lvert x \rvert"></div></td>
+                                        <td><div class="twMenuEntry" id="abs" title="\lvert x \rvert "></div></td>
                                         <td><div class="twMenuEntry" id="sin" title="\sin "></div></td>
                                         <td><div class="twMenuEntry" id="cos" title="\cos "></div></td>
                                         <td><div class="twMenuEntry" id="tan" title="\tan "></div></td>
@@ -85,8 +87,8 @@
                                         <td><div class="twMenuEntry" id="hbar" title="\hbar "></div></td>
                                         <td><div class="twMenuEntry" id="infty" title="\infty "></div></td>
                                         <td><div class="twMenuEntry" id="mathbbr" title="\mathbb{R}"></div></td>
-                                        <td><div class="twMenuEntry" id="mathbbn" title="\mathbb{N} "></div></td>
-                                        <td><div class="twMenuEntry" id="mathbbz" title="\mathbb{Z} "></div></td>
+                                        <td><div class="twMenuEntry" id="mathbbn" title="\mathbb{N}"></div></td>
+                                        <td><div class="twMenuEntry" id="mathbbz" title="\mathbb{Z}"></div></td>
                                     </tr>
                                 </table>        
                             </div>
@@ -105,8 +107,8 @@
                                     <tr>
                                     </tr>
                                         <td><div class="twMenuEntry" id="nabla" title="\nabla "></div></td>
-                                        <td><div class="twMenuEntry" id="int" title="\int_{i}^{j} x\,dx"></div></td>
-                                        <td><div class="twMenuEntry" id="oint" title="\oint_{i}^{j} x\,dx"></div></td>
+                                        <td><div class="twMenuEntry" id="int" title="\int_{i}^{j} x\,dx "></div></td>
+                                        <td><div class="twMenuEntry" id="oint" title="\oint_{i}^{j} x\,dx "></div></td>
                                         <td><div class="twMenuEntry" id="iint" title="\iint "></div></td>
                                         <td><div class="twMenuEntry" id="iiint" title="\iiint "></div></td>
                                         <td><div class="twMenuEntry" id="derivativex" title="\frac{d}{dx}"></div></td>
@@ -157,9 +159,9 @@
                             <div class="twMenuPane" id="twMisc">
                                 <table>
                                     <tr>
-                                        <td><div class="twMenuEntry" id="curls" title="\left\{ \right\}"></div></td>
-                                        <td><div class="twMenuEntry" id="brackets" title="\left[ \right]"></div></td>
-                                        <td><div class="twMenuEntry" id="parentathis" title="\left( \right)"></div></td>
+                                        <td><div class="twMenuEntry" id="curls" title="\left\{ \right\} "></div></td>
+                                        <td><div class="twMenuEntry" id="brackets" title="\left[ \right] "></div></td>
+                                        <td><div class="twMenuEntry" id="parentathis" title="\left( \right) "></div></td>
                                     </tr>
                                     <tr>
                                         <td><div class="twMenuEntry" id="vmatrix" 
