@@ -102,11 +102,11 @@
          */
         getInfo : function() {
             return {
-                longname : 'Tiny Webtex',
+                longname : 'Tiny WebTex',
                 author : 'infosys@kth.se',
                 authorurl : 'http://www.kth.se/',
-                infourl : 'http://www.kth.se/',
-                version : "1.0"
+                infourl : 'http://github.com/KTHse/tinywebtex',
+                version : "1.1.0"
             };
         }
     });
