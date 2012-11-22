@@ -20,29 +20,6 @@
 tinyMCEPopup.requireLangPack();
 
 
-/*
- * Add trim() to strings for browsers which don't have them.
- */
-if (!String.prototype.trim) {
-    String.prototype.trim = function() {
-        return this.replace(/^\s+|\s+$/g, '');
-    }
-}
-
-
-/*
- * A sprintf kind of format() enabling constructions like:
- * "Apples: {0}, Pears: {1}".format("Golden Delicious", "Alexander Lucas");
- */
-String.prototype.format = function() {
-    var formatted = this;
-    for (arg in arguments) {
-        formatted = formatted.replace("{" + arg + "}", arguments[arg]);
-    }
-    return formatted;
-};
-
-
 /*    
  * JavaScript object driving the WebTex dialog.
  */
@@ -129,6 +106,11 @@ var TinyWebtexDialog = {
                 } else {
                     tw.isOk(false, img.webtex.log);            
                 }
+            })
+            .error(function(d, s, xhr) {
+                tw.xmlhttp = null;
+                tw.inProgress(false);
+                tw.isOk(false, "! not found");            
             });
     },
     
@@ -184,14 +166,6 @@ var TinyWebtexDialog = {
             e.className = "alert";
             e.textContent = str.substr(2).split(/.\Wl.[0-9]+\W/g)[0]
         }
-        // e.textContent = str[0];
-        // if (str.length > 1) {
-            // if (str[1].length > 30) {
-                // e.innerHTML += ': <i>...{0}</i>'.format(str[1].slice(-30));
-            // } else {
-                // e.innerHTML += ': <i>{0}</i>'.format(str[1]);
-            // }
-        // }
     },
 
 
@@ -234,14 +208,14 @@ var TinyWebtexDialog = {
      */
     update : function() {
         var tw = TinyWebtexDialog,
-            f = document.forms[0],
             ed = tinyMCEPopup.editor,
-            size = f.size.value,
             span = ed.dom.get(tw.span),
+            f = document.forms[0],
+            size = $("#size").val(),
             tex;
-            
+
         f.tex.value = tw.setStyle(f.tex.value, f.style.value),
-        tex = f.tex.value.trim();
+        tex = $.trim(f.tex.value);
         
         if (tex == "") {
             // Expression is empty, reset status.
@@ -261,7 +235,7 @@ var TinyWebtexDialog = {
         // New or modified image.
         tw.callWebTex(
             ed.dom.create('img', {
-                'src' : "{0}/WebTex?D={1}&tex={2}".format(tw.url, size, encodeURIComponent(tex)),
+                'src' : tw.url + "/WebTex?" + $.param({D : size, tex : tex}),
                 'alt' : 'tex:' + tex,
                 'class' : 'webtex'
             })
