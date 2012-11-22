@@ -94,27 +94,32 @@ Version numbering follows the [Semantic versioning](http://semver.org) approach.
 ## Browser compatibility
 
 Browsers are as they are and I've only tested the browsers I have reasonably
-easy access to. Others may work or not. Only major versions are listed.
+easy access to. Others may work or not.
 
 ### Browsers known to work
 
-Tiny WebTex is as of this writing known to work on:
+Tiny WebTex is as of this writing generally believed to work on:
 
-Mac OS X Mountain Lion: Chrome 23, Firefox 16, Opera 12 and Safari 6.
+* Opera >= 10
+* Firefox >= 11
+* Chrome >= 14
+* Safari >= 5.1
 
-Windows 7: Chrome 23, Firefox 16 and Internet Explorer 9.
+More specifically these versions are known to work:
 
-Linux Fedora 17: Chrome 23 and Firefox 16.
+* Mac OS X Mountain Lion: Chrome 23, Firefox 16, Opera 12 and Safari 6.
+* Windows 7: Chrome 23, Firefox 16 and Internet Explorer 9.
+* Linux Fedora 17: Chrome 23 and Firefox 16.
+* iOS 6: Safari 6 and Dolphin 6.
+* Android: The tinywebtex plugin is known to work in the browser in
+  Android 2.5.3 (HTC Sense 3.0) even if TinyMCE does not work completely.
+  Later browsers as of Android 3 or something like that should work.
 
-iOS 6: Safari 6 and Dolphin 6.
+### Browsers currently known not to work
 
-Android: The tinywebtex plugin is known to work in the browser in
-Android 2.5.3 (HTC Sense 3.0) even if TinyMCE does not work completely.
-Later browsers as of Android 3 or something like that should work.
-
-### Browsers known not to work
-
-Firefox 3.6, at least background image scaling issues.
+* Firefox <= 10 - problems fetching image, returns undefined. Seems ok otherwise.
+* Internet Explorer <= 8 - initialization and menues issues.
+* Safari <= 5.0 - cannot fetch image. Seems ok otherwise.
 
 
 ## Copyrights and license information
