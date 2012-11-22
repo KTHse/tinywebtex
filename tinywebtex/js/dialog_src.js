@@ -303,7 +303,7 @@ var TinyWebtexDialog = {
 
     
     closeMenues: function() {
-        var menues = document.querySelectorAll(".twMenuPane"),
+        var menues = document.getElementsByClassName("twMenuPane"),
             i;
             
         for (i = 0; i < menues.length; i++) {
@@ -314,9 +314,9 @@ var TinyWebtexDialog = {
 
     initShortcuts : function() {
         var tw = this,
-            entries = document.querySelectorAll(".twMenuEntry"), 
-            menues = document.querySelectorAll(".twMenu"),
-            panes = document.querySelectorAll(".twMenuPane"),
+            entries = document.getElementsByClassName("twMenuEntry"), 
+            menues = document.getElementsByClassName("twMenu"),
+            panes = document.getElementsByClassName("twMenuPane"),
             i;
             
         for (i = 0; i < panes.length; i++) {
@@ -333,6 +333,7 @@ var TinyWebtexDialog = {
                 tw.insertAtCursor(this.title);
                 tw.update(); 
                 document.forms[0].tex.focus();           
+                return false;
             };          
         }
         for (i = 0; i < menues.length; i++) {
@@ -344,6 +345,7 @@ var TinyWebtexDialog = {
                     tw.closeMenues();
                     el.style.display = "block";
                 }
+                return false;
             };
         }
     },
