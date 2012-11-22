@@ -41,7 +41,7 @@
     <delete>
       <fileset dir="." includes="**/*~" defaultexcludes="false"/>
       <fileset dir="." includes="*.zip"/>
-      <fileset dir="." includes="**/*.js" excludes="**/*_src.js"/>
+      <fileset dir="." includes="**/*.js" excludes="**/*_src.js,**/jquery-*.js"/>
     </delete>
   </target>
 </project>
