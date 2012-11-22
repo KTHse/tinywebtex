@@ -59,31 +59,25 @@ var TinyWebtexDialog = {
      */
     init : function() {
         var tw = this,
-            f = document.forms[0],
-            ed = tinyMCEPopup.editor,
-            div,
-            img;
+            ed = tinyMCEPopup.editor;
 
         tw.url = tinyMCEPopup.getWindowArg('webtex_url');
         tw.size = tinyMCEPopup.getWindowArg('default_size');
         tw.max = tinyMCEPopup.getWindowArg('max_length');
         tw.span = tinyMCEPopup.getWindowArg('marker');
-        f.tex.onkeyup = f.size.onchange = f.style.onchange = tw.update;
 
-        div = ed.dom.create('div', {}, ed.dom.get(tw.span).firstChild);
-        if (div.childNodes.length) {
-            img = div.childNodes.item(0);
-            if ((img.nodeName == 'IMG') && img.className.match("webtex")) {
-                f.tex.value = tw.getTex(img);
-                f.size.value = tw.getSize(img);
-                f.style.value = tw.isDisplayStyle(f.tex.value) ? "display" : "inline" ;
-            } else if (img.nodeType == Node.TEXT_NODE) {
-                f.tex.value = img.textContent;
-            }
-        }
+        $(ed.dom.create('div', {}, ed.dom.get(tw.span).firstChild))
+            .children('img.webtex:first').each(function() {
+	            $("#tex").val(tw.getTex(this));
+	            $("#size").val(tw.getSize(this));
+	            $("#style").val(tw.isDisplayStyle($("#tex").val()) ? "display" : "inline");
+        });
+
         tw.initShortcuts();            
-        tw.update();            
-        f.tex.focus();
+        tw.update();
+        $("#tex").keyup(tw.update).focus();
+        $("#size").change(tw.update);
+        $("#style").change(tw.update);
     },
     
     
@@ -107,39 +101,35 @@ var TinyWebtexDialog = {
      * otherwise.
      */
     callWebTex : function(img) {
-        var xmlhttp = new XMLHttpRequest(),
-            tw = this;
+        var tw = this;
             
         if (tw.xmlhttp != null) {
             tw.xmlhttp.abort();
         }
-
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState < 4) {
-                tw.inProgress(true);
-            } else if (xmlhttp.readyState == 4) {
+        
+        tw.inProgress(true);
+        $.ajax({url : img.src,
+                beforeSend: function (xhr) {
+                	tw.xmlhttp = xhr;
+                }})
+            .done(function(d, s, xhr) {
+                tw.xmlhttp = null;
                 tw.inProgress(false);
-                if (xmlhttp.status == 200 || xmlhttp.status == 304) {
-                    img.webtex = {
-                        log : decodeURIComponent(xmlhttp.getResponseHeader("X-MathImage-log")),
-                        tex : decodeURIComponent(xmlhttp.getResponseHeader("X-MathImage-tex")),
-                        depth : xmlhttp.getResponseHeader("X-MathImage-depth"),
-                        width : xmlhttp.getResponseHeader("X-MathImage-width"),
-                        height : xmlhttp.getResponseHeader("X-MathImage-height")
-                    };
-                    tw.updateCounter(img);            
-                    if (img.webtex.log == "OK") {
-                        tw.isOk(true);            
-                        tw.updateEditor(img);
-                    } else {
-                        tw.isOk(false, img.webtex.log);            
-                    }
+                img.webtex = {
+                    log : decodeURIComponent(xhr.getResponseHeader("X-MathImage-log")),
+                    tex : decodeURIComponent(xhr.getResponseHeader("X-MathImage-tex")),
+                    depth : xhr.getResponseHeader("X-MathImage-depth"),
+                    width : xhr.getResponseHeader("X-MathImage-width"),
+                    height : xhr.getResponseHeader("X-MathImage-height")
+                };
+                tw.updateCounter(img);            
+                if (img.webtex.log == "OK") {
+                    tw.isOk(true);            
+                    tw.updateEditor(img);
+                } else {
+                    tw.isOk(false, img.webtex.log);            
                 }
-            }
-        };
-        tw.xmlhttp = xmlhttp;
-        xmlhttp.open("GET", img.src, true);
-        xmlhttp.send();
+            });
     },
     
     
@@ -279,75 +269,43 @@ var TinyWebtexDialog = {
     },
     
     
-    /*
-     * Inserts string at cursor in tex buffer.
-     */
-    insertAtCursor : function(str) {
-        var tex = document.forms[0].tex,
-            end,
-            range;
-
-        if (typeof tex.selectionStart != "undefined" && typeof tex.selectionEnd != "undefined") {
-            end = tex.selectionEnd;
-            tex.value = tex.value.slice(0, end) + str + tex.value.slice(end);
-            tex.selectionStart = tex.selectionEnd = end + str.length;
-        } else if (typeof document.selection != "undefined" && typeof document.selection.createRange != "undefined") {
-            // IE <= 8.
-            tex.focus();
-            range = document.selection.createRange();
-            range.collapse(false);
-            range.text = str;
-            range.select();
-        }
-    },
-
-    
     closeMenues: function() {
-        var menues = document.getElementsByClassName("twMenuPane"),
-            i;
-            
-        for (i = 0; i < menues.length; i++) {
-            menues.item(i).style.display = "none";
-        }
+    	$(".twMenuPane").each(function() {
+    		$(this).css('display', 'none');
+    	});
     },
 
 
     initShortcuts : function() {
-        var tw = this,
-            entries = document.getElementsByClassName("twMenuEntry"), 
-            menues = document.getElementsByClassName("twMenu"),
-            panes = document.getElementsByClassName("twMenuPane"),
-            i;
-            
-        for (i = 0; i < panes.length; i++) {
-            panes.item(i).onmouseout = function() {
-                tw.timer = setTimeout(tw.closeMenues, 150);
-            };
-            panes.item(i).onmouseover = function() {
-                clearTimeout(tw.timer);
-            };
-        }
-        for (i = 0; i < entries.length; i++) {
-            entries.item(i).onclick = function() {
+        var tw = this;
+        
+        $(".twMenuPane").each(function() {
+            $(this).mouseout(function() {
+            	tw.timer = setTimeout(tw.closeMenues, 150);
+            }).mouseover(function() {
+            	clearTimeout(tw.timer);
+            });
+        });
+        $(".twMenuEntry").each(function() {
+        	$(this).click(function() {
+        		$("#tex").insertAtCaret(this.title);
                 tw.closeMenues();
-                tw.insertAtCursor(this.title);
                 tw.update(); 
-                document.forms[0].tex.focus();           
-                return false;
-            };          
-        }
-        for (i = 0; i < menues.length; i++) {
-            menues.item(i).onclick = function() {
-                var el = document.getElementById(this.getAttribute('href').substr(1));
-                if (el.style.display == "block") {
+                $("#tex").focus();
+        	});
+        });
+        $(".twMenu").each(function() {
+            $(this).click(function() {
+            	var el = $($(this).attr('href'));
+                if (el.css('display') == "block") {
                     tw.closeMenues();
                 } else {
                     tw.closeMenues();
-                    el.style.display = "block";
+                	el.css('display', 'block');
                 }
                 return false;
-            };
-        }
+            });      	
+        });
     },
 
 

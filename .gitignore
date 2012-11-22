@@ -2,7 +2,7 @@
 *.css
 !*_src.css
 *.js
-!jquery-*.min.js
+!jquery-*.js
 !*_src.js
 *~
 
