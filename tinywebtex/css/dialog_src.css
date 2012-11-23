@@ -413,6 +413,6 @@ only screen and (                min-resolution: 2dppx) {
     }
 
     td.twStatus span.working {
-        background-image:url(../img/progress.gif);
+        background-image:url(../img/progress_high_res.gif);
     }
 }
