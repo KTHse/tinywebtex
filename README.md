@@ -109,7 +109,7 @@ general testing believed to work on these browsers:
 * Opera >= 10
 * Safari >= 4
 * Mobile browsers, like IOS Safari, Dolphin and the Android browser are 
-  beleived to work in the extent they support TinyMCE.
+  believed to work in the extent they support TinyMCE.
 
 ### Browsers known not to work
 
