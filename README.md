@@ -15,7 +15,7 @@ Tinywebtex is as of this writing published at http://github.com/KTHse/tinywebtex
 ### Prerequisites
 
 You need a WebTex backend service version 1.3.2 or later, see
-http://github.com/fjollberg/webtex
+http://github.com/KTHse/webtex
 
 ### Installation instructions
 
