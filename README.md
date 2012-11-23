@@ -100,8 +100,8 @@ Your mileage may vary.
 ### Browsers known to work
 
 Active development is currently primarily done on Chrome 23, Firefox 15, Safari 6
-and Internet Explorer 9. Tiny WebTex is as of this writing generally based on more
-general testing believed to work on these browsers:
+and Internet Explorer 9. Tiny WebTex is as of this writing, based on more
+general testing, believed to work on these browsers:
 
 * Chrome >= 14
 * Firefox >= 11
