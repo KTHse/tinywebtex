@@ -17,6 +17,8 @@ tinyMCE.addI18n('en.tinywebtex_dlg',{
     editExpression : 'Edit mathematical expression (TeX)',
     functions : 'Func.',
     help : 'Help',
+    helpWiki : 'LaTeX&nbsp;Wikipedia',
+    helpGithub : 'Get&nbsp;TinyWebTex',
     inline : 'Inline',
     misc : 'Misc.',
     operators : 'Operators',

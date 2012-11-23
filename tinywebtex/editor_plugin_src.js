@@ -49,7 +49,7 @@
             
                 ed.windowManager.open({
                     file : url + '/dialog.htm',
-                    width : 400 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
+                    width : 420 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
                     height : 240 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
                     inline : 1
                 }, {
