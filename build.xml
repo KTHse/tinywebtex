@@ -1,5 +1,5 @@
 <project name="tinywebtex" default="build">
-  <property name="project.version" value="1.1.0"/>
+  <property name="project.version" value="1.1.1"/>
   
   <tstamp>
     <format property="project.builddate" pattern="yyyy-MM-dd"/>
@@ -42,6 +42,7 @@
       <fileset dir="." includes="**/*~" defaultexcludes="false"/>
       <fileset dir="." includes="*.zip"/>
       <fileset dir="." includes="**/*.js" excludes="**/*_src.js,**/jquery-*.js"/>
+      <fileset dir="." includes="**/*.css" excludes="**/*_src.css"/>
     </delete>
   </target>
 </project>

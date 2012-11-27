@@ -22,8 +22,8 @@
                             <div class="twMenuPane" id="twFunctions">
                                 <table>
                                     <tr>
-                                        <td><div class="twMenuEntry" id="expxy" title="\exp_{x}y "></div></td>
-                                        <td><div class="twMenuEntry" id="log" title="\log "></div></td>
+                                        <td><div class="twMenuEntry" id="expxy" title="\exp "></div></td>
+                                        <td><div class="twMenuEntry" id="log" title="\log_{a}"></div></td>
                                         <td><div class="twMenuEntry" id="ln" title="\ln "></div></td>
                                         <td><div class="twMenuEntry" id="abs" title="\lvert x \rvert "></div></td>
                                         <td><div class="twMenuEntry" id="sin" title="\sin "></div></td>
@@ -43,7 +43,7 @@
                                         <td><div class="twMenuEntry" id="sqrtnx" title="\sqrt[n]{x}"></div></td>
                                         <td><div class="twMenuEntry" id="xsuby" title="x_{y}"></div></td>
                                         <td><div class="twMenuEntry" id="xtopy" title="x^{y}"></div></td>
-                                        <td><div class="twMenuEntry" id="over" title="{x \over y}"></div></td>
+                                        <td><div class="twMenuEntry" id="over" title="\frac{x}{y}"></div></td>
                                     </tr>
                                 </table>        
                             </div>
@@ -86,8 +86,9 @@
                                         <td><div class="twMenuEntry" id="oomega" title="\Omega "></div></td>
                                         <td><div class="twMenuEntry" id="hbar" title="\hbar "></div></td>
                                         <td><div class="twMenuEntry" id="infty" title="\infty "></div></td>
-                                        <td><div class="twMenuEntry" id="mathbbr" title="\mathbb{R}"></div></td>
+                                        <td><div class="twMenuEntry" id="mathbbc" title="\mathbb{C}"></div></td>
                                         <td><div class="twMenuEntry" id="mathbbn" title="\mathbb{N}"></div></td>
+                                        <td><div class="twMenuEntry" id="mathbbr" title="\mathbb{R}"></div></td>
                                         <td><div class="twMenuEntry" id="mathbbz" title="\mathbb{Z}"></div></td>
                                     </tr>
                                 </table>        
@@ -107,16 +108,16 @@
                                     <tr>
                                     </tr>
                                         <td><div class="twMenuEntry" id="nabla" title="\nabla "></div></td>
-                                        <td><div class="twMenuEntry" id="int" title="\int_{i}^{j} x\,dx "></div></td>
-                                        <td><div class="twMenuEntry" id="oint" title="\oint_{i}^{j} x\,dx "></div></td>
-                                        <td><div class="twMenuEntry" id="iint" title="\iint "></div></td>
-                                        <td><div class="twMenuEntry" id="iiint" title="\iiint "></div></td>
+                                        <td><div class="twMenuEntry" id="int" title="\int_{i}^{j}"></div></td>
+                                        <td><div class="twMenuEntry" id="oint" title="\oint_{i}^{j}"></div></td>
+                                        <td><div class="twMenuEntry" id="iint" title="\iint_{D}"></div></td>
+                                        <td><div class="twMenuEntry" id="iiint" title="\iiint_{D}"></div></td>
                                         <td><div class="twMenuEntry" id="derivativex" title="\frac{d}{dx}"></div></td>
                                     <tr>
                                     </tr>
-                                        <td><div class="twMenuEntry" id="partialx" title="\frac{\partial}{\partial x}"></div></td>
-                                        <td><div class="twMenuEntry" id="sum" title="\sum_{i}^{j}"></div></td>
-                                        <td><div class="twMenuEntry" id="prod" title="\prod_{i}^{j}"></div></td>
+                                        <td><div class="twMenuEntry" id="partialx" title="\frac{\partial }{\partial x}"></div></td>
+                                        <td><div class="twMenuEntry" id="sum" title="\sum_{i=0}^{j}"></div></td>
+                                        <td><div class="twMenuEntry" id="prod" title="\prod_{i=0}^{j}"></div></td>
                                     </tr>
                                 </table>
                             </div>
@@ -180,11 +181,21 @@ title="\begin{pmatrix}
  z & v
 \end{pmatrix}"></div></td>
                                     </tr>
-                                </table>        
+                                </table>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="twMenu" href="#twHelp">{#tinywebtex_dlg.help}</a>
+                            <div class="twMenuPane" id="twHelp">
+                                <div>
+                                    <a href="http://en.wikipedia.org/wiki/Help:Displaying_a_formula#Functions.2C_symbols.2C_special_characters" target="_blank">{#tinywebtex_dlg.helpWiki}</a>
+                                </div>
+                                <div>
+                                    <a href="http://www.github.com/KTHse/tinywebtex" target="_blank">{#tinywebtex_dlg.helpGithub}</a>
+                                </div>
                             </div>
                         </li>
                     </ul>
-                    <a id="help" href="http://en.wikipedia.org/wiki/Help:Displaying_a_formula#Functions.2C_symbols.2C_special_characters" target="_blank">{#tinywebtex_dlg.help}</a>
                 </th>
             </tr>
         </thead>

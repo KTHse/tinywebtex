@@ -197,10 +197,11 @@ var TinyWebtexDialog = {
                 return tex;
             }).val());
         
+        tw.isOk(true);
+
         if (tex == "") {
             // Expression is empty, reset status.
             tw.updateCounter();
-            tw.isOk(true);
             ed.dom.setHTML(span, "");
             return;
         }

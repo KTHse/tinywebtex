@@ -15,7 +15,7 @@ table.twInput {
 }
 .twInput th {
     border: 1px solid gray;
-    border-bottom: none;
+    border-bottom: 1px solid #f0f0ee;
     text-align: left;
     font-style: normal;
     font-weight: normal;
@@ -37,10 +37,6 @@ table.twInput {
     padding-left: 2px;
     padding-right: 5px;
     padding-bottom: 3px;
-}
-.twInput th #help {
-    padding-right: 2px;
-    float: right;
 }
 td.twTex {
     background-color: #fff;
@@ -120,6 +116,17 @@ td.twStatus #counter {
 .twMenuPane div:hover {
     border-color: #ccc;
     background-color: #ddd;
+}
+#twHelp {
+    padding: 2px;
+}
+#twHelp div {
+    width: auto;
+    height: auto;
+    border: none;  
+    background: none; 
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 div#abs {
     background-position: 0 -144px;
@@ -243,6 +250,9 @@ div#mod {
 }
 div#mp {
     background-position: -72px -72px;
+}
+div#mathbbc {
+    background-position: -72px -144px;
 }
 div#mathbbn {
     background-position: -288px -48px;
@@ -413,6 +423,6 @@ only screen and (                min-resolution: 2dppx) {
     }
 
     td.twStatus span.working {
-        background-image:url(../img/progress.gif);
+        background-image:url(../img/progress_high_res.gif);
     }
 }

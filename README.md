@@ -21,7 +21,8 @@ http://github.com/KTHse/webtex
 
 Fetch a compiled release from the download directory or build from source,
 see below. Unzip the package and copy the tinywebtex directory to the
-TinyMCE plugin folder.
+TinyMCE plugin folder. If you deploy it elsewhere as an external plugin
+you will have to amend the path to tinymce in the dialog.htm file.
 
 Register the `tinywebtex` plugin in the call to `tinyMCE.init`, as you
 would with any other TinyMCE plugin, and add the `tinywebtex` button
@@ -109,7 +110,7 @@ general testing, believed to work on these browsers:
 * Opera >= 10
 * Safari >= 4
 * Mobile browsers, like IOS Safari, Dolphin and the Android browser are 
-  beleived to work in the extent they support TinyMCE.
+  believed to work in the extent they support TinyMCE.
 
 ### Browsers known not to work
 

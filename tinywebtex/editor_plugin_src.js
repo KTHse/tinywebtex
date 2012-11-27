@@ -49,7 +49,7 @@
             
                 ed.windowManager.open({
                     file : url + '/dialog.htm',
-                    width : 400 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
+                    width : 420 + parseInt(ed.getLang('tinywebtex.delta_width', 0)),
                     height : 240 + parseInt(ed.getLang('tinywebtex.delta_height', 0)),
                     inline : 1
                 }, {
@@ -102,11 +102,11 @@
          */
         getInfo : function() {
             return {
-                longname : 'Tiny Webtex',
+                longname : 'Tiny WebTex',
                 author : 'infosys@kth.se',
                 authorurl : 'http://www.kth.se/',
-                infourl : 'http://www.kth.se/',
-                version : "1.0"
+                infourl : 'http://github.com/KTHse/tinywebtex',
+                version : "1.1.0"
             };
         }
     });
