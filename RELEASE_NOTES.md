@@ -1,6 +1,8 @@
 Release notes
 -------------
 
+## Tiny WebTex 1.1.1
+
 * Minor updates of expressions after feedback from the math 
   department at KTH.
 * Fix an issue where alerts where not reset properly when the
