@@ -15,7 +15,7 @@
 	        } else if (typeof document.selection != "undefined" && typeof document.selection.createRange != "undefined") {
 	            // IE <= 8.
 	            el.focus();
-	            range = document.selection.createRange();
+	            range = el.ownerDocument.selection.createRange();
 	            range.text = str;
 	            range.collapse(false);
 	            range.select();
