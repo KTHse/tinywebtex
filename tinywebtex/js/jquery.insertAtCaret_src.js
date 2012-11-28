@@ -6,7 +6,8 @@
 	            start,
 	            range;
     
-	        if (typeof this.selectionStart != "undefined" && typeof el.selectionEnd != "undefined") {
+	        if (typeof el.selectionStart != "undefined" && typeof el.selectionEnd != "undefined") {
+                    el.focus();
 	            end = el.selectionEnd;
 	            start = el.selectionStart;
 	            el.value = el.value.slice(0, start) + str + el.value.slice(end);
