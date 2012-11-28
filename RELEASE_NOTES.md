@@ -1,6 +1,12 @@
 Release notes
 -------------
 
+## Tiny WebTex 1.1.2
+
+* Fix issue where elements from menues always was inserted at beginning
+  of buffer in IE9.
+* Fix issue where caret was not moved properly in IE9.
+
 ## Tiny WebTex 1.1.1
 
 * Minor updates of expressions after feedback from the math 

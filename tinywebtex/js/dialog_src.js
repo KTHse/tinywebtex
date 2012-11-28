@@ -174,8 +174,8 @@ var TinyWebtexDialog = {
     isDisplayStyle : function(tex) {
         return tex.match(/^\s*\\displaystyle.*/g);
     },
-    
-    
+
+
     /*
      * Callback for keyup events in tex field of dialog. Will call for
      * a new image from WebTex if we believe that the contents have 
@@ -186,17 +186,17 @@ var TinyWebtexDialog = {
             ed = tinyMCEPopup.editor,
             span = ed.dom.get(tw.span),
             size = $("#size").val(),
-            tex = $.trim($("#tex").val(function(index, tex) {
-                var style = $("#style").val();
-
-                if (style == "display" && ! tw.isDisplayStyle(tex)) {
-                    return "\\displaystyle " + tex;
-                } else if (style == "inline" && tw.isDisplayStyle(tex)) {
-                    return tex.replace(/\s*\\displaystyle\s*/g, "");
-                }
-                return tex;
-            }).val());
+            style = $("#style").val(),
+            tex = $("#tex").val();
         
+        if (style == "display" && ! tw.isDisplayStyle(tex)) {
+            tex = $.trim($("#tex").val("\\displaystyle " + tex).val());
+        } else if (style == "inline" && tw.isDisplayStyle(tex)) {
+            tex = $.trim($("#tex").val(tex.replace(/\s*\\displaystyle\s*/g, "")).val());
+        } else {
+            tex = $.trim(tex);
+        }
+      
         tw.isOk(true);
 
         if (tex == "") {
