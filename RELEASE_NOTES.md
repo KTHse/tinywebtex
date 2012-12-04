@@ -7,7 +7,7 @@ Some updates after feedback from UX.
 
 * Displaystyle is now default.
 * Hide displaystyle/textstyle from user, always specify which to backend.
-* Rename some lables.
+* Rename some labels.
 
 ## Tiny WebTex 1.1.2
 
