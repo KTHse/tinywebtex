@@ -18,7 +18,7 @@ tinyMCE.addI18n('en.tinywebtex_dlg',{
     functions : 'Func.',
     help : 'Help',
     helpWiki : 'More&nbsp;TeX&nbsp;on&nbsp;Wikipedia',
-    helpGithub : 'About&nbsp;TinyWebTex&nbsp;on&nbsp;github',
+    helpGithub : 'About&nbsp;TinyWebTex',
     inline : 'Compact',
     misc : 'Misc.',
     operators : 'Operators',
