@@ -17,7 +17,7 @@ tinyMCE.addI18n('sv.tinywebtex_dlg',{
     editExpression : 'Redigera matematiskt uttryck (TeX)',
     functions : 'Funk.',
     help : 'Hj&auml;lp',
-    helpWiki : 'Mer&nbsp;TeX&nbsp;p&aring;&nbsp;Wikipedia',
+    helpWiki : 'Mer&nbsp;TeX&nbsp;(Wikipedia)',
     helpGithub : 'Om&nbsp;TinyWebTex',
     inline : 'Kompakt',
     misc : 'Div.',
