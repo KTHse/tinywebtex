@@ -11,7 +11,7 @@
 tinyMCE.addI18n('sv.tinywebtex_dlg',{
     arrowsetc : 'Pilar/Relationer',
     charsLeft : 'Tecken kvar innan bildl&auml;nken blir f&ouml;r l&aring;ng f&ouml;r att visas i vissa webbl&auml;sare.',
-    display : 'Display',
+    display : 'Normal',
     done : 'St&auml;ng',
     doneTitle : 'St&auml;ng f&ouml;nstret (esc)',
     editExpression : 'Redigera matematiskt uttryck (TeX)',
@@ -19,7 +19,7 @@ tinyMCE.addI18n('sv.tinywebtex_dlg',{
     help : 'Hj&auml;lp',
     helpWiki : 'LaTeX&nbsp;Wikipedia',
     helpGithub : 'H&auml;mta&nbsp;TinyWebTex',
-    inline : 'Inline',
+    inline : 'Kompakt',
     misc : 'Div.',
     operators : 'Operatorer',
     size : 'Storlek',
