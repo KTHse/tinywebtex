@@ -106,7 +106,7 @@
                 author : 'infosys@kth.se',
                 authorurl : 'http://www.kth.se/',
                 infourl : 'http://github.com/KTHse/tinywebtex',
-                version : "1.1.2"
+                version : "1.2.0"
             };
         }
     });
