@@ -46,7 +46,7 @@ var TinyWebtexDialog = {
             .children('img.webtex:first').each(function() {
 	            $("#size").val(tw.getSize(this));
                 $("#style").val(tw.getTex(this)
-                    .match(/^\s*\\displaystyle.*/g) ? "display" : "inline");
+                    .match(/^\s*\\textstyle.*/g) ? "inline" : "display");
                 $("#tex").val(tw.getTex(this)
                     .replace(/^\s*\\displaystyle /g, '')
                     .replace(/^\s*\\textstyle /g, ''));
