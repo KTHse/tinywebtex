@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>{#tinywebtex_dlg.title}</title>
-    <script type="text/javascript" src="../../tiny_mce_popup.js?v={tinymce_version}"></script>
+    <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
     <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.insertAtCaret.js"></script>
-    <script type="text/javascript" src="js/dialog.js?v={tinymce_version}"></script>
+    <script type="text/javascript" src="js/dialog.js"></script>
     <link rel="stylesheet" href="css/dialog.css"/>
 </head>
 <body>
@@ -191,7 +191,7 @@ title="\begin{pmatrix}
                                     <a href="http://en.wikipedia.org/wiki/Help:Displaying_a_formula#Functions.2C_symbols.2C_special_characters" target="_blank">{#tinywebtex_dlg.helpWiki}</a>
                                 </div>
                                 <div>
-                                    <a href="http://www.github.com/KTHse/tinywebtex" target="_blank">{#tinywebtex_dlg.helpGithub}</a>
+                                    <a href="http://github.com/KTHse/tinywebtex/wiki/Help" target="_blank">{#tinywebtex_dlg.helpGithub}</a>
                                 </div>
                             </div>
                         </li>
@@ -214,8 +214,8 @@ title="\begin{pmatrix}
     <div class="twControls">
         <label title="{#tinywebtex_dlg.styleTitle}" for="twStyle">{#tinywebtex_dlg.style}</label>
         <select name="twStyle" id="style">
-            <option value="inline" selected="selected">{#tinywebtex_dlg.inline}</option>
-            <option value="display">{#tinywebtex_dlg.display}</option>
+            <option value="display" selected="selected">{#tinywebtex_dlg.display}</option>
+            <option value="inline">{#tinywebtex_dlg.inline}</option>
         </select>
         <label title="{#tinywebtex_dlg.sizeTitle}" for="twSize">{#tinywebtex_dlg.size}</label>
         <select name="twSize" id="size">
@@ -234,7 +234,6 @@ title="\begin{pmatrix}
 	<div class="mceActionPanel">
 		<input type="button" id="insert" name="insert" title="{#tinywebtex_dlg.doneTitle}" value="{#tinywebtex_dlg.done}" onclick="TinyWebtexDialog.done();" />
 	</div>
-	<input type="hidden" id="uuid" name="uuid" value=""/>
 </form>
 
 </body>

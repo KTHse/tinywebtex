@@ -44,9 +44,12 @@ var TinyWebtexDialog = {
 
         $(ed.dom.create('div', {}, ed.dom.get(tw.span).firstChild))
             .children('img.webtex:first').each(function() {
-	            $("#tex").val(tw.getTex(this));
 	            $("#size").val(tw.getSize(this));
-	            $("#style").val(tw.isDisplayStyle($("#tex").val()) ? "display" : "inline");
+                $("#style").val(tw.getTex(this)
+                    .match(/^\s*\\textstyle.*/g) ? "inline" : "display");
+                $("#tex").val(tw.getTex(this)
+                    .replace(/^\s*\\displaystyle /g, '')
+                    .replace(/^\s*\\textstyle /g, ''));
         });
 
         tw.initMenues();            
@@ -187,16 +190,8 @@ var TinyWebtexDialog = {
             span = ed.dom.get(tw.span),
             size = $("#size").val(),
             style = $("#style").val(),
-            tex = $("#tex").val();
-        
-        if (style == "display" && ! tw.isDisplayStyle(tex)) {
-            tex = $.trim($("#tex").val("\\displaystyle " + tex).val());
-        } else if (style == "inline" && tw.isDisplayStyle(tex)) {
-            tex = $.trim($("#tex").val(tex.replace(/\s*\\displaystyle\s*/g, "")).val());
-        } else {
-            tex = $.trim(tex);
-        }
-      
+            tex = $.trim($("#tex").val());
+
         tw.isOk(true);
 
         if (tex == "") {
@@ -204,6 +199,12 @@ var TinyWebtexDialog = {
             tw.updateCounter();
             ed.dom.setHTML(span, "");
             return;
+        }
+
+        if (style == "display") { 
+            tex = "\\displaystyle " + tex
+        } else {
+            tex = "\\textstyle " + tex
         }
 
         if (span.firstChild &&
