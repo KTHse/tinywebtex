@@ -1,6 +1,14 @@
 Release notes
 -------------
 
+## Tiny WebTex 1.2.0
+
+Some updates after feedback from UX.
+
+* Displaystyle is now default.
+* Hide displaystyle/textstyle from user, always specify which to backend.
+* Rename some labels.
+
 ## Tiny WebTex 1.1.2
 
 * Fix issue where elements from menues always was inserted at beginning
