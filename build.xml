@@ -1,5 +1,5 @@
 <project name="tinywebtex" default="build">
-  <property name="project.version" value="1.2.0"/>
+  <property name="project.version" value="1.2.1"/>
   
   <tstamp>
     <format property="project.builddate" pattern="yyyy-MM-dd"/>

@@ -1,6 +1,8 @@
 Release notes
 -------------
 
+## Tiny WebTex 1.2.1
+
 * More robust insertion, should now work in older FF (e.g 3.6).
 
 ## Tiny WebTex 1.2.0
