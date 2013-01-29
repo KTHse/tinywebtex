@@ -102,10 +102,10 @@ Your mileage may vary.
 
 Active development is currently primarily done on Chrome 23, Firefox 15, Safari 6
 and Internet Explorer 9. Tiny WebTex is as of this writing, based on more
-general testing, believed to work on these browsers:
+general testing, believed to work in these browsers:
 
 * Chrome >= 14
-* Firefox >= 11
+* Firefox >= 3.6
 * Internet Explorer >= 8
 * Opera >= 10
 * Safari >= 4
@@ -117,7 +117,6 @@ general testing, believed to work on these browsers:
 This is a list of browsers known not to work. Browsers not in this list or
 the list above may or may not work.
 
-* Firefox <= 10 - problems fetching image, results in undefined in editor.
 * Internet Explorer <= 7. Don't even bother.
 
 
