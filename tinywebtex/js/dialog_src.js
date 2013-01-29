@@ -145,7 +145,7 @@ var TinyWebtexDialog = {
             .attr("height", img.webtex.height);
 
         ed.undoManager.add();
-        ed.dom.replace(img, tw.span);
+        ed.dom.setHTML(tw.span, img.outerHTML);
         ed.execCommand('mceRepaint', false);
     },
 
